@@ -1,12 +1,12 @@
-#Nifty Cloud for Push Notification Plugin
+
+#Nifty Cloud for Push Notfication Plugin
 
 ---
 
-## Specifications
+## Spec
 
  - PhoneGap/Cordova 5.2 ~
- - iOS/Android
-   - Support OS version: See Nifty Cloud mobile backend [iOS SDK](https://github.com/NIFTYCloud-mbaas/ncmb_ios), [Android SDK](https://github.com/NIFTYCloud-mbaas/ncmb_android) Specifications.
+ - iOS/Andorid
 
 ---
 
@@ -14,14 +14,14 @@
 
 ###window.NCMB.monaca.setDeviceToken(applicationKey,clientKey,senderId, successCallback, errorCallback)
 
-Register device-token to Nifty cloud mobile backend datastore (Installation class).
+Register devicetoken to Nifty server.
 
  - (String)applicationKey
  - (String)clientKey
  - (String)senderId
  - (Function)successCallback() (OPTIONAL)
  - (Function)errorCallback(error) (OPTIONAL)
-
+ 
 ###window.NCMB.monaca.setHandler(callback)
 
 Set the callback when app receive a push notification.
@@ -30,19 +30,19 @@ Set the callback when app receive a push notification.
 
 ###window.NCMB.monaca.getInstallationId(callback)
 
-Get the Installation objectId for device.
+Get the Installation ID from device.
 
 - (function)callback(installationId)
 
 ###window.NCMB.monaca.setReceiptStatus(flag, callback);
 
-Set the notification open receipt status to be store or not.
-This status will be used to create Push notification open status statistic graph.
+Set the notification open receipt status.
 
-- (Boolean) flag
-    - true : Send receipt to server
-    - false : No send
+- (Boolean) flag 
+	-  true : Send recipt to server
+	- false : No send
 - (Function) callback() (OPTIONAL)
+
 
 ###window.NCMB.monaca.getReceiptStatus(callback);
 
@@ -50,52 +50,49 @@ Get the notification open receipt status.
 
 - (function)callback(flag)
 
+
 ---
 
 ## Sample
 ```
-    <!DOCTYPE HTML>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <script src="cordova.js"></script>
-        <script>
-            document.addEventListener("deviceready", function() {
-                NCMB.monaca.setDeviceToken(
-                    "#####application_key#####",
-                    "#####client_key#####",
-                    "#####sender_id#####"
-                );
-
-                // Set callback for push notification data.
+	<!DOCTYPE HTML>
+	<html>
+	<head>
+	    <meta charset="utf-8">
+	    <script src="cordova.js"></script>
+	    <script>
+			document.addEventListener("deviceready", function() {
+				NCMB.monaca.setDeviceToken(
+            		"#####application_key#####",
+            		"#####client_key#####",
+            		"#####sender_id#####"
+				);
+				
+				// Set callback for push notification data.
                 NCMB.monaca.setHandler(function(jsonData){
                     alert("callback :::" + JSON.stringify(jsonData));
                 });
-
+                
                 // Get installation ID.
                 NCMB.monaca.getInstallationId(function(installationId){
-                    // something
+                	// something
                 });
-
+                
                 // Get receipt status
                 NCMB.monaca.getReceiptStatus(function(status){
-                    // status = true or false
+                	// status = true or false
                 });
-
+                
                 // Set receipt status
                 NCMB.monaca.setReceiptStatus(true);
-
-            },false);                
-        </script>
-    </head>
-    <body>
-
-    <h1>PushNotification Sample</h1>
-
-    </body>
-    </html>
+                
+	        },false);		        
+	    </script>
+	</head>
+	<body>
+	
+	<h1>PushNotification Sample</h1>
+	
+	</body>
+	</html>
 ```
-
-## License
-
-Please read LICENSE file.

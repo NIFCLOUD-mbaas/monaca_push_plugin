@@ -9,7 +9,7 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.0">
+    version="2.0.1">
 
     <name>NiftyMB</name>
     <description>NiftyMB Cloud for Push Notification Plugin</description>
@@ -62,7 +62,7 @@
             <meta-data android:name="openPushStartActivity" android:value=".MainActivity"/>
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
-        <framework src="com.google.android.gms:play-services-gcm:8.3.0" />
+        <framework src="com.google.android.gms:play-services-gcm:8.1.0" />
         <framework src="com.google.code.gson:gson:2.4" />
         <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
