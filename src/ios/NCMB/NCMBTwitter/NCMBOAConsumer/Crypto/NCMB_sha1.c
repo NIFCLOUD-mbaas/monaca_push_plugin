@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "sha1.h"
+#include "NCMB_sha1.h"
 
 void SHA1Transform(u_int32_t state[5], u_int8_t buffer[64]);
 

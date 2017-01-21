@@ -153,10 +153,10 @@
         <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSURLBase.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
         <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/Base64Transcoder.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
         <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/Base64Transcoder.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/hmac.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/hmac.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/sha1.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/sha1.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
+        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/NCMB_hmac.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
+        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/NCMB_hmac.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
+        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/NCMB_sha1.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
+        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/NCMB_sha1.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
         <header-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.h" target-dir="NCMB/NCMBURLConnection/" />
         <source-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.m" target-dir="NCMB/NCMBURLConnection/" />
         <header-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.h" target-dir="NCMB/NSDataBase64Encode/" />

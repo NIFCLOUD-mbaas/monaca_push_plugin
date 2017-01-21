@@ -42,7 +42,7 @@
 
 #import "NCMBOAHMAC_SHA1SignatureProvider.h"
 
-#include "hmac.h"
+#include "NCMB_hmac.h"
 #include "Base64Transcoder.h"
 
 @implementation NCMBOAHMAC_SHA1SignatureProvider
