@@ -9,7 +9,7 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.3">
+    version="2.0.4">
 
     <name>NiftyMB</name>
     <description>NiftyMB Cloud for Push Notification Plugin</description>
