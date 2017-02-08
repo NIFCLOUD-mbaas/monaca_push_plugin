@@ -123,10 +123,10 @@
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBCloseImageView.m" target-dir="NCMB/NCMBRichPush/" />
         <header-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.h" target-dir="NCMB/NCMBRichPush/" />
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.m" target-dir="NCMB/NCMBRichPush/" />
-        <header-file src="src/ios/NCMBRequest/NCMBRequest.h" target-dir="NCMBRequest/" />
-        <source-file src="src/ios/NCMBRequest/NCMBRequest.m" target-dir="NCMBRequest/" />
-        <header-file src="src/ios/NCMBScriptService/NCMBScriptService.h" target-dir="NCMBScriptService/" />
-        <source-file src="src/ios/NCMBScriptService/NCMBScriptService.m" target-dir="NCMBScriptService/" />
+        <header-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.h" target-dir="NCMB/NCMBRequest/" />
+        <source-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.m" target-dir="NCMB/NCMBRequest/" />
+        <header-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.h" target-dir="NCMB/NCMBScriptService/" />
+        <source-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.m" target-dir="NCMB/NCMBScriptService/" />
         <header-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.h" target-dir="NCMB/NCMBURLConnection/" />
         <source-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.m" target-dir="NCMB/NCMBURLConnection/" />
         <header-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.h" target-dir="NCMB/NSDataBase64Encode/" />
