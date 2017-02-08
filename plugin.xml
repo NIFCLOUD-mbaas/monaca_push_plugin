@@ -99,9 +99,6 @@
         <source-file src="src/ios/NCMB/NCMBFile.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBGeoPoint.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBGeoPoint.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBGoogleUtils+Private.h" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBGoogleUtils.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBGoogleUtils.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBInstallation.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBInstallation.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBObject+Subclass.h" target-dir="NCMB/" />
