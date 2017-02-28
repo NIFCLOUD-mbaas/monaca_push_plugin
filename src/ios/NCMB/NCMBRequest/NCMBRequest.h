@@ -1,5 +1,5 @@
 /*
- Copyright 2014 NIFTY Corporation All Rights Reserved.
+ Copyright 2016 NIFTY Corporation All Rights Reserved.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -14,17 +14,22 @@
  limitations under the License.
  */
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NCMBTwitterLoginView : UIWebView
+@interface NCMBRequest : NSMutableURLRequest
 
-@property (strong, nonatomic) UIButton* closeButton;
-@property (strong, nonatomic) UIWebView *webView;
++(instancetype)requestWithURL:(NSURL *)url
+                       method:(NSString *)method
+                       header:(NSDictionary *)headers
+                         body:(NSDictionary *)body;
 
-- (void) appearWebView:(UIInterfaceOrientation)interfaceOrientation;
-- (void) closeWebView;
-- (void) webviewDidFailLoad;
-- (void) startWebViewLoading;
-- (void) endWebViewLoading;
++(NSString *)returnTimeStamp;
+
++(NSString *)returnSessionToken;
+
++ (NSString *)returnSignature:(NSURL *)url method:(NSString *)method timestamp:(NSString *)timestamp;
+
++(NSString *)returnEncodedString:(NSString *)originalString;
 
 @end

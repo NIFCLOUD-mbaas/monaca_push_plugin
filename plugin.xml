@@ -9,7 +9,7 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.4">
+    version="2.0.5">
 
     <name>NiftyMB</name>
     <description>NiftyMB Cloud for Push Notification Plugin</description>
@@ -95,15 +95,10 @@
         <header-file src="src/ios/NCMB/NCMBConstants.h" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBError.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBError.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBFacebookUtils.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBFacebookUtils.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBFile.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBFile.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBGeoPoint.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBGeoPoint.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBGoogleUtils+Private.h" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBGoogleUtils.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBGoogleUtils.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBInstallation.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBInstallation.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBObject+Subclass.h" target-dir="NCMB/" />
@@ -118,8 +113,8 @@
         <header-file src="src/ios/NCMB/NCMBRole.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBRole.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBSubclassing.h" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBTwitterUtils.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBTwitterUtils.m" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMBScript.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBScript.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBUser.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBUser.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBReachability/NCMBReachability.h" target-dir="NCMB/NCMBReachability/" />
@@ -128,36 +123,10 @@
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBCloseImageView.m" target-dir="NCMB/NCMBRichPush/" />
         <header-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.h" target-dir="NCMB/NCMBRichPush/" />
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.m" target-dir="NCMB/NCMBRichPush/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBTwitterLoginView.h" target-dir="NCMB/NCMBTwitter/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBTwitterLoginView.m" target-dir="NCMB/NCMBTwitter/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMB_Twitter.m" target-dir="NCMB/NCMBTwitter/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAConsumer.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAConsumer.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOADataFetcher.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOADataFetcher.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAHMAC_SHA1SignatureProvider.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAHMAC_SHA1SignatureProvider.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAMutableURLRequest.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAMutableURLRequest.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOARequestParameter.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOARequestParameter.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAServiceTicket.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAServiceTicket.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOASignatureProviding.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAToken.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/NCMBOAToken.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSMutableURLRequestParameters.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSMutableURLRequestParameters.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSStringURLEncoding.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSStringURLEncoding.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSURLBase.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Categories/NSURLBase.m" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Categories/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/Base64Transcoder.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/Base64Transcoder.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/hmac.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/hmac.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <source-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/sha1.c" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
-        <header-file src="src/ios/NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/sha1.h" target-dir="NCMB/NCMBTwitter/NCMBOAConsumer/Crypto/" />
+        <header-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.h" target-dir="NCMB/NCMBRequest/" />
+        <source-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.m" target-dir="NCMB/NCMBRequest/" />
+        <header-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.h" target-dir="NCMB/NCMBScriptService/" />
+        <source-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.m" target-dir="NCMB/NCMBScriptService/" />
         <header-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.h" target-dir="NCMB/NCMBURLConnection/" />
         <source-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.m" target-dir="NCMB/NCMBURLConnection/" />
         <header-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.h" target-dir="NCMB/NSDataBase64Encode/" />
@@ -176,7 +145,6 @@
         <source-file src="src/ios/NCMB/Operations/NCMBRemoveOperation.m" target-dir="NCMB/Operations/" />
         <header-file src="src/ios/NCMB/Operations/NCMBSetOperation.h" target-dir="NCMB/Operations/" />
         <source-file src="src/ios/NCMB/Operations/NCMBSetOperation.m" target-dir="NCMB/Operations/" />
-        <header-file src="src/ios/NCMB/PrivateHeaders/NCMBFacebookUtils+Private.h" target-dir="NCMB/PrivateHeaders/" />
         <header-file src="src/ios/NCMB/PrivateHeaders/NCMBObject+Private.h" target-dir="NCMB/PrivateHeaders/" />
         <header-file src="src/ios/NCMB/PrivateHeaders/NCMBQuery+Private.h" target-dir="NCMB/PrivateHeaders/" />
         <header-file src="src/ios/NCMB/PrivateHeaders/NCMBRelation+Private.h" target-dir="NCMB/PrivateHeaders/" />
