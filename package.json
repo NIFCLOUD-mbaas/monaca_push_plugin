@@ -1,6 +1,6 @@
 {
   "name": "ncmb-push-monaca-plugin",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Nifty Cloud mobile backend Push Notification Plugin for Monaca",
   "author": "",
   "license": "Apache License 2.0",
