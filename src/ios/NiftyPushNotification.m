@@ -260,6 +260,8 @@ static BOOL hasSetup = NO;
         } else {
             if (error.code == 409001) {
                 [self updateExistInstallation:installation];
+            } else if (error.code == 404001){
+                [self reRegistInstallation:deviceToken];
             } else {
                 [self callSetDeviceTokenErrorOnUiThreadWith: error.code message:kNiftyPushErrorMessageFailedToSave];
             }
@@ -288,6 +290,21 @@ static BOOL hasSetup = NO;
         }
     } ];
 
+}
+
+/**
+ * When No data available, create a new installation.
+ */
+-(void)reRegistInstallation:(NSData*)deviceToken{
+    NCMBInstallation *newInstallation = [[NCMBInstallation alloc]init];
+    [newInstallation setDeviceTokenFromData:deviceToken];
+    [newInstallation saveInBackgroundWithBlock:^(NSError *error) {
+        if(!error){
+            [self callSetDeviceTokenSuccessOnUiThread];
+        } else {
+            [self callSetDeviceTokenErrorOnUiThreadWith:error.code message:kNiftyPushErrorMessageFailedToSave];
+        }
+    }];
 }
 
 #pragma mark - Get InstalationId
