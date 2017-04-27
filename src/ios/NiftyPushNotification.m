@@ -1,6 +1,6 @@
 //
 //  NiftyPushNotification.m
-//  Copyright 2016 NIFTY Corporation All Rights Reserved.
+//  Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 
 #import "NiftyPushNotification.h"
