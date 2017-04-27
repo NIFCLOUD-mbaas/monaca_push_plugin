@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   NiftyMB Cloud for Push Notificaction Plugin
-  Copyright 2016 NIFTY Corporation. All Rights Reserved.
+  Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
   GooglePlayServices library
   Copyright (c) 2013 The Chromium Authors. All rights reserved.
@@ -13,7 +13,7 @@
 
     <name>NiftyMB</name>
     <description>NiftyMB Cloud for Push Notification Plugin</description>
-    <license>Copyright 2014 NIFTY Corporation. All Rights Reserved.</license>
+    <license>Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
