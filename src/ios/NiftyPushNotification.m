@@ -197,8 +197,8 @@ static BOOL hasSetup = NO;
 
 - (void)callSetDeviceTokenErrorOnUiThread:(NSString*)code message:(NSString*)message {
     NSDictionary *json = [NSDictionary dictionaryWithObjectsAndKeys:
-                          code, @"code",
-                          message, @"message", 
+                          @"code", code,
+                          @"message", message,
                           nil];
     [self performSelectorOnMainThread:@selector(callSetDeviceTokenError:) withObject:json waitUntilDone:NO];
 }
@@ -244,15 +244,22 @@ static BOOL hasSetup = NO;
     hasSetup = YES;
 
     if (deviceToken != nil) {
-        [self performSelectorInBackground:@selector(saveInBackgroundWithBlock:) withObject:deviceToken];
+        [self performSelectorInBackground:@selector(saveInBackgroundWithBlockFirst:) withObject:deviceToken];
     }
+}
+
+- (void)saveInBackgroundWithBlockFirst:(NSData*)deviceToken {
+    [self saveInBackgroundWithBlock:deviceToken withInstallation:nil];
 }
 
 /**
  * Save device token in nifty mBaas.
  */
-- (void)saveInBackgroundWithBlock:(NSData*)deviceToken {
-    NCMBInstallation *installation = [NCMBInstallation currentInstallation];
+- (void)saveInBackgroundWithBlock:(NSData*)deviceToken withInstallation:(NCMBInstallation *) inst {
+    NCMBInstallation *installation = inst;
+    if (installation == nil) {
+        installation = [NCMBInstallation currentInstallation];
+    }
     [installation setDeviceTokenFromData:deviceToken];
     [installation saveInBackgroundWithBlock:^(NSError *error) {
         if (!error) {
@@ -260,6 +267,9 @@ static BOOL hasSetup = NO;
         } else {
             if (error.code == 409001) {
                 [self updateExistInstallation:installation];
+            } else if (error.code == 404001 && inst == nil) {
+                installation.objectId = nil;
+                [self saveInBackgroundWithBlock:deviceToken withInstallation:installation];
             } else {
                 [self callSetDeviceTokenErrorOnUiThreadWith: error.code message:kNiftyPushErrorMessageFailedToSave];
             }
