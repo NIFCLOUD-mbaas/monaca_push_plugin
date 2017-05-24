@@ -1,4 +1,4 @@
-#Nifty Cloud for Push Notification Plugin
+#Nifty Cloud Mobile Backend Push Notification Plugin for Monaca
 
 ---
 
