@@ -197,8 +197,8 @@ static BOOL hasSetup = NO;
 
 - (void)callSetDeviceTokenErrorOnUiThread:(NSString*)code message:(NSString*)message {
     NSDictionary *json = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"code", code,
-                          @"message", message,
+                          code, @"code",
+                          message, @"message",
                           nil];
     [self performSelectorOnMainThread:@selector(callSetDeviceTokenError:) withObject:json waitUntilDone:NO];
 }
