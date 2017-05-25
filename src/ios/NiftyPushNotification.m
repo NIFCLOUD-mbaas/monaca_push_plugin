@@ -64,11 +64,11 @@ static BOOL hasSetup = NO;
 + (void) setupNCMB {
     NSString *appKey = [[self class] getAppKey];
     NSString *clientKey = [[self class] getClientKey];
-    
+
     if (appKey == nil || clientKey == nil) {
         return;
     }
-    
+
     [NCMB setApplicationKey:appKey clientKey:clientKey];
     hasSetup = YES;
 }
@@ -80,7 +80,7 @@ static BOOL hasSetup = NO;
     if (!hasSetup) {
         return;
     }
-    
+
     if ([NiftyPushNotification isReceiptStatusOk]) {
         [NCMBAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     }
@@ -93,7 +93,7 @@ static BOOL hasSetup = NO;
     if (!hasSetup) {
         return;
     }
-    
+
     if ([NiftyPushNotification isReceiptStatusOk]) {
         [NCMBAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }
@@ -106,7 +106,7 @@ static BOOL hasSetup = NO;
     if (!hasSetup) {
         return;
     }
-    
+
     [NCMBPush handleRichPush:userInfo];
 }
 
@@ -144,19 +144,19 @@ static BOOL hasSetup = NO;
  */
 - (void) setDeviceToken:(CDVInvokedUrlCommand*)command {
     _setDeviceTokenCallbackId = command.callbackId;
-    
+
     if (![self validateInputParameters:command.arguments]) {
         [self callSetDeviceTokenErrorOnUiThread:kNiftyPushErrorCodeInvalidParams message: kNiftyPushErrorMessageInvalidParams];
         return;
     }
-    
+
     NSString* appKey    = [command.arguments objectAtIndex:0];
     NSString* clientKey = [command.arguments objectAtIndex:1];
     [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNiftyPushAppKey];
     [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNiftyPushClientKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self installWithAppKey:appKey clientKey:clientKey deviceToken:[[self class] getDeviceTokenAPNS]];
-    
+
     if (_isFailedToRegisterAPNS) {
         _isFailedToRegisterAPNS = NO;
         [self callSetDeviceTokenErrorOnUiThread:kNiftyPushErrorCodeFailedToRegisterAPNS message: kNiftyPushErrorMessageFailedToRegisterAPNS];
@@ -197,8 +197,8 @@ static BOOL hasSetup = NO;
 
 - (void)callSetDeviceTokenErrorOnUiThread:(NSString*)code message:(NSString*)message {
     NSDictionary *json = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"code", code,
-                          @"message", message,
+                          code, @"code",
+                          message, @"message",
                           nil];
     [self performSelectorOnMainThread:@selector(callSetDeviceTokenError:) withObject:json waitUntilDone:NO];
 }
@@ -239,20 +239,27 @@ static BOOL hasSetup = NO;
     if (appKey == nil || clientKey == nil) {
         return;
     }
-    
+
     [NCMB setApplicationKey:appKey clientKey:clientKey];
     hasSetup = YES;
-    
+
     if (deviceToken != nil) {
-        [self performSelectorInBackground:@selector(saveInBackgroundWithBlock:) withObject:deviceToken];
+        [self performSelectorInBackground:@selector(saveInBackgroundWithBlockFirst:) withObject:deviceToken];
     }
+}
+
+- (void)saveInBackgroundWithBlockFirst:(NSData*)deviceToken {
+    [self saveInBackgroundWithBlock:deviceToken withInstallation:nil];
 }
 
 /**
  * Save device token in nifty mBaas.
  */
-- (void)saveInBackgroundWithBlock:(NSData*)deviceToken {
-    NCMBInstallation *installation = [NCMBInstallation currentInstallation];
+- (void)saveInBackgroundWithBlock:(NSData*)deviceToken withInstallation:(NCMBInstallation *) inst {
+    NCMBInstallation *installation = inst;
+    if (installation == nil) {
+        installation = [NCMBInstallation currentInstallation];
+    }
     [installation setDeviceTokenFromData:deviceToken];
     [installation saveInBackgroundWithBlock:^(NSError *error) {
         if (!error) {
@@ -260,6 +267,9 @@ static BOOL hasSetup = NO;
         } else {
             if (error.code == 409001) {
                 [self updateExistInstallation:installation];
+            } else if (error.code == 404001 && inst == nil) {
+                installation.objectId = nil;
+                [self saveInBackgroundWithBlock:deviceToken withInstallation:installation];
             } else {
                 [self callSetDeviceTokenErrorOnUiThreadWith: error.code message:kNiftyPushErrorMessageFailedToSave];
             }
@@ -342,7 +352,7 @@ static BOOL hasSetup = NO;
     if (_pushReceivedCallbackId != nil && _webViewLoadFinished) {
         while (![_queue isEmpty]) {
             NSDictionary *json = [_queue dequeue];
-            
+
             if (json != nil) {
                 [self sendJson:json callbackId:_pushReceivedCallbackId];
             }
