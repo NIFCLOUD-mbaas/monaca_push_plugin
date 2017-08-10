@@ -5,7 +5,8 @@
 
 
 #import "AppDelegate.h"
+#import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate (NiftyCloud)
+@interface AppDelegate (NiftyCloud) <UNUserNotificationCenterDelegate>
 
 @end
