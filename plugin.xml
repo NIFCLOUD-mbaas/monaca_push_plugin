@@ -160,5 +160,6 @@
         <framework src="AudioToolbox.framework" />
         <framework src="SystemConfiguration.framework" />
         <framework src="CoreLocation.framework" />
+        <framework src="UserNotifications.framework" />
     </platform>
 </plugin>
