@@ -1,4 +1,4 @@
-#Nifty Cloud Mobile Backend Push Notification Plugin for Monaca
+# Nifty Cloud Mobile Backend Push Notification Plugin for Monaca
 
 ---
 
@@ -7,12 +7,12 @@
  - PhoneGap/Cordova 5.2 ~
  - iOS/Android
    - Support OS version: See Nifty Cloud mobile backend [iOS SDK](https://github.com/NIFTYCloud-mbaas/ncmb_ios), [Android SDK](https://github.com/NIFTYCloud-mbaas/ncmb_android) Specifications.
-
+   - In case of Cordova 6.5, support iOS version 9.0 ~
 ---
 
 ## Methods
 
-###window.NCMB.monaca.setDeviceToken(applicationKey,clientKey,senderId, successCallback, errorCallback)
+### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey,senderId, successCallback, errorCallback)
 
 Register device-token to Nifty cloud mobile backend datastore (Installation class).
 
@@ -22,19 +22,19 @@ Register device-token to Nifty cloud mobile backend datastore (Installation clas
  - (Function)successCallback() (OPTIONAL)
  - (Function)errorCallback(error) (OPTIONAL)
 
-###window.NCMB.monaca.setHandler(callback)
+### window.NCMB.monaca.setHandler(callback)
 
 Set the callback when app receive a push notification.
 
 - (function)callback(jsonData)
 
-###window.NCMB.monaca.getInstallationId(callback)
+### window.NCMB.monaca.getInstallationId(callback)
 
 Get the Installation objectId for device.
 
 - (function)callback(installationId)
 
-###window.NCMB.monaca.setReceiptStatus(flag, callback);
+### window.NCMB.monaca.setReceiptStatus(flag, callback);
 
 Set the notification open receipt status to be store or not.
 This status will be used to create Push notification open status statistic graph.
@@ -44,7 +44,7 @@ This status will be used to create Push notification open status statistic graph
     - false : No send
 - (Function) callback() (OPTIONAL)
 
-###window.NCMB.monaca.getReceiptStatus(callback);
+### window.NCMB.monaca.getReceiptStatus(callback);
 
 Get the notification open receipt status.
 
@@ -53,6 +53,7 @@ Get the notification open receipt status.
 ---
 
 ## Sample
+
 ```
     <!DOCTYPE HTML>
     <html>
