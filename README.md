@@ -4,10 +4,10 @@
 
 ## Specifications
 
- - PhoneGap/Cordova 5.2 ~
- - iOS/Android
-   - Support OS version: See Nifty Cloud mobile backend [iOS SDK](https://github.com/NIFTYCloud-mbaas/ncmb_ios), [Android SDK](https://github.com/NIFTYCloud-mbaas/ncmb_android) Specifications.
-   - In case of Cordova 6.5, support iOS version 9.0 ~
+ - PhoneGap/Cordova 6.5 ~
+ - iOS/Android Support OS version:
+    - iOS: 9.x ~
+    - Android: see [Android SDK](https://github.com/NIFTYCloud-mbaas/ncmb_android) Specifications.
 ---
 
 ## Methods
