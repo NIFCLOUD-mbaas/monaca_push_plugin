@@ -34,19 +34,45 @@
 - (void)setupNotification:(NSNotification *)notification {
     [NiftyPushNotification setupNCMB];
     UIApplication const *application = [UIApplication sharedApplication];
-    
-#ifdef __IPHONE_8_0
-    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
-        UIUserNotificationType types = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-        UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+      
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
+
+        //iOS10以上での、DeviceToken要求方法
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert |
+                                                 UNAuthorizationOptionBadge |
+                                                 UNAuthorizationOptionSound)
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  if (error) {
+                                      return;
+                                  }
+                                  if (granted) {
+                                      //通知を許可にした場合DeviceTokenを要求
+                                      [application registerForRemoteNotifications];
+                                  }
+                              }];
+    } else if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){8, 0, 0}]){
+        
+        //iOS10未満での、DeviceToken要求方法
+        
+        //通知のタイプを設定したsettingを用意
+        UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *setting=  [UIUserNotificationSettings settingsForTypes:type categories:nil];
+        
+        //通知のタイプを設定
         [application registerUserNotificationSettings:setting];
+        
+        //DeviceTokenを要求
         [application registerForRemoteNotifications];
     } else {
-        [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
+        
+        //iOS8未満での、DeviceToken要求方法
+        [application registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeAlert |
+          UIRemoteNotificationTypeBadge |
+          UIRemoteNotificationTypeSound)];
     }
-#else
-    [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound)];
-#endif
     
     // check if received push notification
     NSDictionary *launchOptions = [notification userInfo];
@@ -111,6 +137,14 @@
     
     [NiftyPushNotification trackAppOpenedWithRemoteNotificationPayload:userInfo];
     [NiftyPushNotification handleRichPush:userInfo];
+}
+
+/**
+ * Did receive remote notification on ios 10
+ */
+- (void)userNotificationCenter:(UNUserNotificationCenter* )center willPresentNotification:(UNNotification* )notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+    
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
 }
 
 /**

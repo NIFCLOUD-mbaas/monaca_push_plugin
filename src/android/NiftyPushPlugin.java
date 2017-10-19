@@ -269,6 +269,9 @@ public class NiftyPushPlugin extends CordovaPlugin
                             // Check duplicated registration ID.
                             if (NCMBException.DUPLICATE_VALUE.equals(saveErr.getCode())) {
                                 updateInstallation(installation, callbackContext);
+                            } else if (NCMBException.DATA_NOT_FOUND.equals(saveErr.getCode())) {
+                                // Retry
+                                setDeviceToken(args, callbackContext);
                             } else {
                                 saveErr.printStackTrace();
                                 callbackContext.error(getErrorJson(saveErr.getCode(), "Failed to save registration ID."));

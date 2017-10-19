@@ -267,7 +267,7 @@ static BOOL hasSetup = NO;
         } else {
             if (error.code == 409001) {
                 [self updateExistInstallation:installation];
-            } else if (error.code == 404001 && inst == nil) {
+            } else if (error.code == 404001 && inst == nil && _setDeviceTokenCallbackId) {
                 installation.objectId = nil;
                 [self saveInBackgroundWithBlock:deviceToken withInstallation:installation];
             } else {
