@@ -62,8 +62,8 @@
             <meta-data android:name="openPushStartActivity" android:value=".MainActivity"/>
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
-        <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <framework src="com.google.android.gms:play-services-gcm:8.1.0" />
+        <framework src="com.google.android.gms:play-services:11.0.0" />
+        <framework src="com.android.support:appcompat-v7:26.0.2" />
         <framework src="com.google.code.gson:gson:2.4" />
         <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
