@@ -24,9 +24,7 @@ public class NiftyData {
         mBundle = new Bundle();
 
         if (null != bundle) {
-            for (String key : bundle.keySet()) {
-                mBundle.putString(key, bundle.getString(key));
-            }
+            mBundle.putAll(bundle);
         }
     }
 
