@@ -1,0 +1,14 @@
+repositories {
+    maven {
+        url 'https://maven.google.com'
+        // Alternative URL is 'https://dl.google.com/dl/android/maven2/'
+    }
+}
+
+dependencies {
+    compile 'com.google.android.gms:play-services:11.0.0'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.2'
+}
+
+ext.cdvCompileSdkVersion = 'android-26'
