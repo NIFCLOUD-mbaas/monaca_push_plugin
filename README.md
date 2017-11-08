@@ -1,4 +1,4 @@
-# Nifty Cloud Mobile Backend Push Notification Plugin for Monaca
+# NIF Cloud Mobile Backend Push Notification Plugin for Monaca
 
 ---
 
@@ -14,7 +14,7 @@
 
 ### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey,senderId, successCallback, errorCallback)
 
-Register device-token to Nifty cloud mobile backend datastore (Installation class).
+Register device-token to NIF cloud mobile backend datastore (Installation class).
 
  - (String)applicationKey
  - (String)clientKey
