@@ -63,8 +63,9 @@
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <framework src="com.google.android.gms:play-services-gcm:8.1.0" />
-        <framework src="com.google.code.gson:gson:2.4" />
+        <framework src="com.google.android.gms:play-services:11.0.0" />
+        <framework src="com.android.support:appcompat-v7:26.0.2" />
+        <framework src="com.google.code.gson:gson:2.3.1" />
         <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
         <source-file src="src/android/NiftyPushPlugin.java" target-dir="src/plugin/push/nifty/" />
@@ -92,6 +93,7 @@
         <source-file src="src/ios/NiftyQueue.m" />
         <header-file src="src/ios/NCMB/NCMB.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMB.m" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMB_umbrella.h" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBACL.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBACL.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBAnalytics.h" target-dir="NCMB/" />
@@ -99,6 +101,8 @@
         <header-file src="src/ios/NCMB/NCMBAnonymousUtils.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBAnonymousUtils.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBConstants.h" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMBDateFormat.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBDateFormat.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBError.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBError.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBFile.h" target-dir="NCMB/" />
@@ -114,29 +118,29 @@
         <source-file src="src/ios/NCMB/NCMBPush.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBQuery.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMBQuery.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBRelation.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBRelation.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBRole.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBRole.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBSubclassing.h" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBScript.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBScript.m" target-dir="NCMB/" />
-        <header-file src="src/ios/NCMB/NCMBUser.h" target-dir="NCMB/" />
-        <source-file src="src/ios/NCMB/NCMBUser.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBReachability/NCMBReachability.h" target-dir="NCMB/NCMBReachability/" />
         <source-file src="src/ios/NCMB/NCMBReachability/NCMBReachability.m" target-dir="NCMB/NCMBReachability/" />
+        <header-file src="src/ios/NCMB/NCMBRelation.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBRelation.m" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.h" target-dir="NCMB/NCMBRequest/" />
+        <source-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.m" target-dir="NCMB/NCMBRequest/" />
         <header-file src="src/ios/NCMB/NCMBRichPush/NCMBCloseImageView.h" target-dir="NCMB/NCMBRichPush/" />
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBCloseImageView.m" target-dir="NCMB/NCMBRichPush/" />
         <header-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.h" target-dir="NCMB/NCMBRichPush/" />
         <source-file src="src/ios/NCMB/NCMBRichPush/NCMBRichPushView.m" target-dir="NCMB/NCMBRichPush/" />
-        <header-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.h" target-dir="NCMB/NCMBRequest/" />
-        <source-file src="src/ios/NCMB/NCMBRequest/NCMBRequest.m" target-dir="NCMB/NCMBRequest/" />
+        <header-file src="src/ios/NCMB/NCMBRole.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBRole.m" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMBScript.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBScript.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.h" target-dir="NCMB/NCMBScriptService/" />
         <source-file src="src/ios/NCMB/NCMBScriptService/NCMBScriptService.m" target-dir="NCMB/NCMBScriptService/" />
-        <header-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.h" target-dir="NCMB/NCMBURLConnection/" />
-        <source-file src="src/ios/NCMB/NCMBURLConnection/NCMBURLConnection.m" target-dir="NCMB/NCMBURLConnection/" />
-        <header-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.h" target-dir="NCMB/NSDataBase64Encode/" />
-        <source-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.m" target-dir="NCMB/NSDataBase64Encode/" />
+        <header-file src="src/ios/NCMB/NCMBSubclassing.h" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NCMBURLSession/NCMBURLSession.h" target-dir="NCMB/NCMBURLSession/" />
+        <source-file src="src/ios/NCMB/NCMBURLSession/NCMBURLSession.m" target-dir="NCMB/NCMBURLSession/" />
+        <header-file src="src/ios/NCMB/NCMBUser.h" target-dir="NCMB/" />
+        <source-file src="src/ios/NCMB/NCMBUser.m" target-dir="NCMB/" />
+        <header-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.h" target-dir="NCMB/NCMBURLSession/" />
+        <source-file src="src/ios/NCMB/NSDataBase64Encode/NSDataBase64Encode.m" target-dir="NCMB/NCMBURLSession/" />
         <header-file src="src/ios/NCMB/Operations/NCMBAddOperation.h" target-dir="NCMB/Operations/" />
         <source-file src="src/ios/NCMB/Operations/NCMBAddOperation.m" target-dir="NCMB/Operations/" />
         <header-file src="src/ios/NCMB/Operations/NCMBAddUniqueOperation.h" target-dir="NCMB/Operations/" />
@@ -161,5 +165,6 @@
         <framework src="SystemConfiguration.framework" />
         <framework src="CoreLocation.framework" />
         <framework src="UserNotifications.framework" />
+        <framework src="MobileCoreServices.framework" />
     </platform>
 </plugin>

@@ -15,12 +15,22 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-@interface NCMBRichPushView : UIWebView
+/**
+ NCMB内で使用するNSDateFormatterを管理するクラスです。
+ */
+@interface NCMBDateFormat : NSObject
 
-- (void) appearWebView:(UIInterfaceOrientation)interfaceOrientation url:(NSString*)richUrl;
-- (void) sizingWebView:(UIInterfaceOrientation)interfaceOrientation;
-- (void) closeWebView:(id)sender;
+/**
+ ISO 8601形式の時刻表記でDateFormatを作成します。
+ @return ISO 8601形式のNSDateFormatter
+ */
++ (NSDateFormatter *) getIso8601DateFormat;
+
+/**
+ ファイル名に使用されるDateFormatを作成します。
+ @return ファイル名用のNSDateFormatter
+ */
++ (NSDateFormatter *) getFileNameDateFormat;
 
 @end
