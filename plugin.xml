@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Nifty Cloud Mobile Backend Push Notification Plugin
+  NIF Cloud Mobile Backend Push Notification Plugin
   Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
   GooglePlayServices library
@@ -9,10 +9,10 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.8">
+    version="2.0.9">
 
-    <name>NiftyMB</name>
-    <description>Nifty Cloud Mobile Backend Push Notification Plugin</description>
+    <name>NIFCloudMB</name>
+    <description>NIF Cloud Mobile Backend Push Notification Plugin</description>
     <license>Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>

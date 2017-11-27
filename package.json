@@ -1,17 +1,17 @@
 {
   "name": "ncmb-push-monaca-plugin",
-  "version": "2.0.8",
-  "description": "Nifty Cloud mobile backend Push Notification Plugin for Monaca",
+  "version": "2.0.9",
+  "description": "NIF Cloud mobile backend Push Notification Plugin for Monaca",
   "author": "",
   "license": "Apache License 2.0",
   "homepage": "http://mb.cloud.nifty.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NIFTYCloud-mbaas/monaca_push_plugin"
+    "url": "git+https://github.com/NIFCloud-mbaas/monaca_push_plugin"
   },
   "maintainers": [
     {
-      "name": "Nifty Cloud mobile backend Team",
+      "name": "NIF Cloud mobile backend Team",
       "url": "http://mb.cloud.nifty.com/support.htm"
     }
   ],
