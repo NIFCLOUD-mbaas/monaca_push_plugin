@@ -49,7 +49,9 @@
                                   }
                                   if (granted) {
                                       //通知を許可にした場合DeviceTokenを要求
-                                      [application registerForRemoteNotifications];
+                                      dispatch_async(dispatch_get_main_queue(), ^{
+                                          [application registerForRemoteNotifications];
+                                      });
                                   }
                               }];
     } else if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){8, 0, 0}]){
