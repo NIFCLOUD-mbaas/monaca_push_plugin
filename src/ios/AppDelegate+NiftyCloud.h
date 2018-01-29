@@ -8,5 +8,5 @@
 #import <UserNotifications/UserNotifications.h>
 
 @interface AppDelegate (NiftyCloud) <UNUserNotificationCenterDelegate>
-
+- (void) registerForRemoteNotifications;
 @end
