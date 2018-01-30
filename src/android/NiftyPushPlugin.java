@@ -240,6 +240,10 @@ public class NiftyPushPlugin extends CordovaPlugin
         final String appKey = args.optString(0);
         final String clientKey = args.optString(1);
         final String senderId = args.optString(2);
+        if ("".equals(appKey) || "".equals(clientKey) || "".equals(senderId)) {
+            callbackContext.error("Parameters are invalid");
+            return true;
+        }
         SharedPreferences prefs = getSharedPrefs();
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(APP_KEY, appKey);
