@@ -3,6 +3,7 @@
 //  Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 
+#import "AppDelegate+NiftyCloud.h"
 #import "NiftyPushNotification.h"
 #import "NCMB/NCMB.h"
 
@@ -245,6 +246,9 @@ static BOOL hasSetup = NO;
 
     if (deviceToken != nil) {
         [self performSelectorInBackground:@selector(saveInBackgroundWithBlockFirst:) withObject:deviceToken];
+    } else {
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate registerForRemoteNotifications];
     }
 }
 

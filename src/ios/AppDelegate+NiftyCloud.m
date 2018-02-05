@@ -33,10 +33,33 @@
  */
 - (void)setupNotification:(NSNotification *)notification {
     [NiftyPushNotification setupNCMB];
-    UIApplication const *application = [UIApplication sharedApplication];
-      
-    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
 
+    // check if received push notification
+    NSDictionary *launchOptions = [notification userInfo];
+
+    if (launchOptions != nil) {
+        NSDictionary *userInfo = [launchOptions objectForKey: @"UIApplicationLaunchOptionsRemoteNotificationKey"];
+
+        if (userInfo != nil){
+            NiftyPushNotification *nifty = [self getNiftyPushNotification];
+
+            if (nifty != nil) {
+                [nifty addJson:[userInfo mutableCopy] withAppIsActive:NO];
+            }
+
+            [NiftyPushNotification trackAppOpenedWithLaunchOptions:launchOptions];
+            [NiftyPushNotification handleRichPush:userInfo];
+        }
+    }
+}
+
+- (void) registerForRemoteNotifications
+{
+    [NiftyPushNotification setupNCMB];
+
+    UIApplication const *application = [UIApplication sharedApplication];
+
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
         //iOS10以上での、DeviceToken要求方法
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         center.delegate = self;
@@ -52,46 +75,28 @@
                                       dispatch_async(dispatch_get_main_queue(), ^{
                                           [application registerForRemoteNotifications];
                                       });
+                                  } else {
+                                      NiftyPushNotification *nifty = [self getNiftyPushNotification];
+                                      if (nifty != nil) {
+                                          [nifty failedToRegisterAPNS];
+                                      }
                                   }
                               }];
     } else if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){8, 0, 0}]){
-        
         //iOS10未満での、DeviceToken要求方法
-        
         //通知のタイプを設定したsettingを用意
         UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
         UIUserNotificationSettings *setting=  [UIUserNotificationSettings settingsForTypes:type categories:nil];
-        
         //通知のタイプを設定
         [application registerUserNotificationSettings:setting];
-        
         //DeviceTokenを要求
         [application registerForRemoteNotifications];
     } else {
-        
         //iOS8未満での、DeviceToken要求方法
         [application registerForRemoteNotificationTypes:
          (UIRemoteNotificationTypeAlert |
           UIRemoteNotificationTypeBadge |
           UIRemoteNotificationTypeSound)];
-    }
-    
-    // check if received push notification
-    NSDictionary *launchOptions = [notification userInfo];
-    
-    if (launchOptions != nil) {
-        NSDictionary *userInfo = [launchOptions objectForKey: @"UIApplicationLaunchOptionsRemoteNotificationKey"];
-        
-        if (userInfo != nil){
-            NiftyPushNotification *nifty = [self getNiftyPushNotification];
-            
-            if (nifty != nil) {
-                [nifty addJson:[userInfo mutableCopy] withAppIsActive:NO];
-            }
-            
-            [NiftyPushNotification trackAppOpenedWithLaunchOptions:launchOptions];
-            [NiftyPushNotification handleRichPush:userInfo];
-        }
     }
 }
 
