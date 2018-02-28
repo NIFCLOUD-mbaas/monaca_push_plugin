@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   NIF Cloud Mobile Backend Push Notification Plugin
-  Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
   GooglePlayServices library
   Copyright (c) 2013 The Chromium Authors. All rights reserved.
@@ -9,11 +9,11 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifty"
-    version="2.0.10">
+    version="2.0.11">
 
     <name>NIFCloudMB</name>
     <description>NIF Cloud Mobile Backend Push Notification Plugin</description>
-    <license>Copyright 2017 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
+    <license>Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -63,7 +63,7 @@
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <framework src="com.google.android.gms:play-services:11.0.0" />
+        <framework src="com.google.android.gms:play-services-gcm:11.0.0" />
         <framework src="com.android.support:appcompat-v7:26.0.2" />
         <framework src="com.google.code.gson:gson:2.3.1" />
         <lib-file src="src/android/libs/NCMB.jar" />

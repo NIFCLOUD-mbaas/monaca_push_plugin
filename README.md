@@ -7,7 +7,7 @@
  - PhoneGap/Cordova 6.5 ~
  - iOS/Android Support OS version:
     - iOS: 9.x ~
-    - Android: see [Android SDK](https://github.com/NIFTYCloud-mbaas/ncmb_android) Specifications.
+    - Android: see [Android SDK](https://github.com/NIFCloud-mbaas/ncmb_android) Specifications.
 ---
 
 ## Methods
