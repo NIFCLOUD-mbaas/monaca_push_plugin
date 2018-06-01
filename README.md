@@ -10,15 +10,28 @@
     - Android: see [Android SDK](https://github.com/NIFCloud-mbaas/ncmb_android) Specifications.
 ---
 
+## Setup
+Download your Firebase configuration file - google-services.json, and place them in the root folder of your cordova project.  Check out this [firebase article](https://support.google.com/firebase/answer/7015592) for details on how to download the files.
+
+```
+- Your_monaca_project/
+    platforms/
+    plugins/
+    www/
+    config.xml
+    google-services.json       <--
+    ...
+```
+---
+
 ## Methods
 
-### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey,senderId, successCallback, errorCallback)
+### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey, successCallback, errorCallback)
 
 Register device-token to NIF cloud mobile backend datastore (Installation class).
 
  - (String)applicationKey
  - (String)clientKey
- - (String)senderId
  - (Function)successCallback() (OPTIONAL)
  - (Function)errorCallback(error) (OPTIONAL)
 
@@ -64,8 +77,7 @@ Get the notification open receipt status.
             document.addEventListener("deviceready", function() {
                 NCMB.monaca.setDeviceToken(
                     "#####application_key#####",
-                    "#####client_key#####",
-                    "#####sender_id#####"
+                    "#####client_key#####"
                 );
 
                 // Set callback for push notification data.
@@ -100,3 +112,10 @@ Get the notification open receipt status.
 ## License
 
 Please read LICENSE file.
+
+Modules in this project:
+- Cordova plugin for Google Firebase (after_prepare.js):
+    - license: MIT
+    - Copyright (c) 2016 Robert Arnesson AB
+    - homepage: https://github.com/arnesson/cordova-plugin-firebase
+    - version: v1.0.5

@@ -12,6 +12,7 @@ import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBInstallation;
 import com.nifty.cloud.mb.core.NCMBPush;
 import com.nifty.cloud.mb.core.NCMBQuery;
+import com.google.firebase.FirebaseApp;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -32,7 +33,6 @@ public class NiftyPushPlugin extends CordovaPlugin
     private static final String PREFS_NAME = "kNiftyPushPrefs";
     private static final String APP_KEY = "app_key";
     private static final String CLIENT_KEY = "client_key";
-    private static final String SENDER_ID = "sender_id";
     private static final String RECEIPT_STATUS = "receipt_status";
 
     /**
@@ -54,14 +54,21 @@ public class NiftyPushPlugin extends CordovaPlugin
         SharedPreferences prefs = getSharedPrefs();
         final String appKey = prefs.getString(APP_KEY, "");
         final String clientKey = prefs.getString(CLIENT_KEY, "");
+        final Context context = this.cordova.getActivity().getApplicationContext();
 
         if (!appKey.equals("") && !clientKey.equals("")) {
             NCMB.initialize(cordova.getActivity(), appKey, clientKey);
         }
+
+        this.cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                FirebaseApp.initializeApp(context);
+            }
+        });
     }
 
     /**
-     * Get new intent from GCM etc.
+     * Get new intent from FCM etc.
      *
      * @param intent
      */
@@ -232,15 +239,14 @@ public class NiftyPushPlugin extends CordovaPlugin
      */
     private boolean setDeviceToken(final JSONArray args, final CallbackContext callbackContext)
     {
-        if (args.length() < 3) {
+        if (args.length() < 2) {
             callbackContext.error("Parameters are invalid");
             return true;
         }
 
         final String appKey = args.optString(0);
         final String clientKey = args.optString(1);
-        final String senderId = args.optString(2);
-        if ("".equals(appKey) || "".equals(clientKey) || "".equals(senderId)) {
+        if ("".equals(appKey) || "".equals(clientKey)) {
             callbackContext.error("Parameters are invalid");
             return true;
         }
@@ -248,13 +254,12 @@ public class NiftyPushPlugin extends CordovaPlugin
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(APP_KEY, appKey);
         editor.putString(CLIENT_KEY, clientKey);
-        editor.putString(SENDER_ID, senderId);
         editor.apply();
         NCMB.initialize(cordova.getActivity(), appKey, clientKey);
 
         final NCMBInstallation installation = NCMBInstallation.getCurrentInstallation();
 
-        installation.getRegistrationIdInBackground(senderId, new DoneCallback() {
+        installation.getRegistrationIdInBackground(new DoneCallback() {
             @Override
             public void done(NCMBException e) {
                 if (null != e) {

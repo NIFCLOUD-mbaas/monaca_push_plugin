@@ -32,40 +32,34 @@
                 <param name="onload" value="true" />
             </feature>
         </config-file>
+        <config-file parent="/resources" target="res/values/strings.xml">
+			    <string name="google_app_id">@string/google_app_id</string>
+		</config-file>
+		<config-file parent="/resources" target="res/values/strings.xml">
+			<string name="google_api_key">@string/google_api_key</string>
+		</config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.GET_ACCOUNTS" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
             <uses-permission android:name="android.permission.VIBRATE" />
-            <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-            <permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-            <uses-permission android:name="$PACKAGE_NAME.permission.C2D_MESSAGE" />
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <receiver
-                android:name="com.nifty.cloud.mb.core.NCMBGcmReceiver"
-                android:exported="true"
-                android:permission="com.google.android.c2dm.permission.SEND">
-                <intent-filter>
-                    <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                    <category android:name="$PACKAGE_NAME"/>
-                </intent-filter>
-            </receiver>
             <service
-                android:name="com.nifty.cloud.mb.core.NCMBGcmListenerService"
-                android:exported="false">
+                android:name="com.nifty.cloud.mb.core.NCMBFirebaseMessagingService">
                 <intent-filter>
-                    <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                    <action android:name="com.google.firebase.MESSAGING_EVENT"/>
                 </intent-filter>
             </service>
             <meta-data android:name="openPushStartActivity" android:value=".MainActivity"/>
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <framework src="com.google.android.gms:play-services-gcm:11.0.0" />
         <framework src="com.android.support:appcompat-v7:26.0.2" />
         <framework src="com.google.code.gson:gson:2.3.1" />
+        <framework src="com.google.firebase:firebase-messaging:15.0.0" />
+        <framework src="com.google.android.gms:play-services-base:15.0.0" />
         <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
         <source-file src="src/android/NiftyPushPlugin.java" target-dir="src/plugin/push/nifty/" />
@@ -167,4 +161,5 @@
         <framework src="UserNotifications.framework" />
         <framework src="MobileCoreServices.framework" />
     </platform>
+    <hook src="scripts/after_prepare.js" type="after_prepare" />
 </plugin>
