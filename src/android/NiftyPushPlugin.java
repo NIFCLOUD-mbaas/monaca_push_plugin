@@ -12,7 +12,6 @@ import com.nifty.cloud.mb.core.NCMBException;
 import com.nifty.cloud.mb.core.NCMBInstallation;
 import com.nifty.cloud.mb.core.NCMBPush;
 import com.nifty.cloud.mb.core.NCMBQuery;
-import com.google.firebase.FirebaseApp;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -54,17 +53,10 @@ public class NiftyPushPlugin extends CordovaPlugin
         SharedPreferences prefs = getSharedPrefs();
         final String appKey = prefs.getString(APP_KEY, "");
         final String clientKey = prefs.getString(CLIENT_KEY, "");
-        final Context context = this.cordova.getActivity().getApplicationContext();
 
         if (!appKey.equals("") && !clientKey.equals("")) {
             NCMB.initialize(cordova.getActivity(), appKey, clientKey);
         }
-
-        this.cordova.getThreadPool().execute(new Runnable() {
-            public void run() {
-                FirebaseApp.initializeApp(context);
-            }
-        });
     }
 
     /**
