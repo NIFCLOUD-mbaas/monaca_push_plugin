@@ -304,7 +304,10 @@ public class NiftyPushPlugin extends CordovaPlugin
                 }
 
                 // Update object ID.
-                installation.setObjectId(results.get(0).getObjectId());
+                try{
+                    installation.setObjectId(results.get(0).getObjectId());
+                }catch(Exception e1){}
+                
                 installation.saveInBackground(new DoneCallback() {
                     @Override
                     public void done(NCMBException saveErr) {
