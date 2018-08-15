@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.nifty.cloud.mb.core.DoneCallback;
+import com.nifty.cloud.mb.core.TokenCallback;
 import com.nifty.cloud.mb.core.FindCallback;
 import com.nifty.cloud.mb.core.NCMB;
 import com.nifty.cloud.mb.core.NCMBException;
@@ -250,13 +251,12 @@ public class NiftyPushPlugin extends CordovaPlugin
         NCMB.initialize(cordova.getActivity(), appKey, clientKey);
 
         final NCMBInstallation installation = NCMBInstallation.getCurrentInstallation();
-
-        installation.getRegistrationIdInBackground(new DoneCallback() {
+        installation.getDeviceTokenInBackground(new TokenCallback() {
             @Override
-            public void done(NCMBException e) {
+            public void done(String token, NCMBException e) {
                 if (null != e) {
                     e.printStackTrace();
-                    callbackContext.error(getErrorJson(e.getCode(), "Failed to get registration ID."));
+                    callbackContext.error(getErrorJson(e.getCode(), "Failed to get device token."));
                     return;
                 }
 
@@ -265,7 +265,7 @@ public class NiftyPushPlugin extends CordovaPlugin
                     @Override
                     public void done(NCMBException saveErr) {
                         if (null == saveErr) {
-                            callbackContext.success("Success to save registration ID.");
+                            callbackContext.success("Success to save device token.");
                         } else {
                             // Check duplicated registration ID.
                             if (NCMBException.DUPLICATE_VALUE.equals(saveErr.getCode())) {
@@ -275,14 +275,13 @@ public class NiftyPushPlugin extends CordovaPlugin
                                 setDeviceToken(args, callbackContext);
                             } else {
                                 saveErr.printStackTrace();
-                                callbackContext.error(getErrorJson(saveErr.getCode(), "Failed to save registration ID."));
+                                callbackContext.error(getErrorJson(saveErr.getCode(), "Failed to get device token."));
                             }
                         }
                     }
                 });
             }
         });
-
         return true;
     }
 
@@ -293,34 +292,41 @@ public class NiftyPushPlugin extends CordovaPlugin
      */
     private static void updateInstallation(final NCMBInstallation installation, final CallbackContext callbackContext) {
         // Search device information which has the same registration ID in device token field.
-        NCMBQuery<NCMBInstallation> query = NCMBInstallation.getQuery();
-        query.whereEqualTo("deviceToken", installation.getDeviceToken());
-        query.findInBackground(new FindCallback<NCMBInstallation>() {
+        installation.getDeviceTokenInBackground(new TokenCallback() {
             @Override
-            public void done(List<NCMBInstallation> results, NCMBException e) {
-                if (null != e) {
-                    callbackContext.error(getErrorJson(e.getCode(), "Failed to get registration ID."));
-                    return;
-                }
-
-                // Update object ID.
-                try{
-                    installation.setObjectId(results.get(0).getObjectId());
-                }catch(Exception e1){}
-                
-                installation.saveInBackground(new DoneCallback() {
-                    @Override
-                    public void done(NCMBException saveErr) {
-                        if (saveErr == null) {
-                            callbackContext.success("Success to update registration ID.");
-                        } else {
-                            saveErr.printStackTrace();
-                            callbackContext.error(getErrorJson(saveErr.getCode(), "Failed to save registration ID."));
+            public void done(String token, NCMBException error) {
+                if (error == null) {
+                    NCMBQuery<NCMBInstallation> query = NCMBInstallation.getQuery();
+                    query.whereEqualTo("deviceToken", installation.getDeviceToken());
+                    query.findInBackground(new FindCallback<NCMBInstallation>() {
+                        @Override
+                        public void done(List<NCMBInstallation> results, NCMBException e) {
+                            if (null != e) {
+                                callbackContext.error(getErrorJson(e.getCode(), "Failed to get device token."));
+                                return;
+                            }
+                            // Update object ID.
+                            try{
+                                installation.setObjectId(results.get(0).getObjectId());
+                            }catch(Exception e1){}
+                            
+                            installation.saveInBackground(new DoneCallback() {
+                                @Override
+                                public void done(NCMBException saveErr) {
+                                    if (saveErr == null) {
+                                        callbackContext.success("Success to update device token.");
+                                    } else {
+                                        saveErr.printStackTrace();
+                                        callbackContext.error(getErrorJson(saveErr.getCode(), "Failed to get device token."));
+                                    }
+                                }
+                            });
                         }
-                    }
-                });
+                    });
+                }
             }
         });
+        
     }
 
     /**
