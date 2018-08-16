@@ -1,14 +1,14 @@
 //
-//  NiftyQueue.h
+//  NcmbQueue.h
 //  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 //
 
-#ifndef HelloCordova_NiftyQueue_h
-#define HelloCordova_NiftyQueue_h
+#ifndef HelloCordova_NcmbQueue_h
+#define HelloCordova_NcmbQueue_h
 #import <Foundation/Foundation.h>
 
-@interface NiftyQueue : NSObject {
+@interface NcmbQueue : NSObject {
     NSMutableArray *_data;
 }
 

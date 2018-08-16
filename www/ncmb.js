@@ -1,5 +1,5 @@
 /**
- * Nifty PushNotification API.
+ * Ncmb PushNotification API.
  */
 var argscheck = require('cordova/argscheck'),
     channel = require('cordova/channel'),
@@ -54,10 +54,10 @@ var DataQueue = (function() {
 /**
  * Plugin name
  */
-var pluginName = 'NiftyPushPlugin';
+var pluginName = 'NcmbPushPlugin';
 
 /**
- * Nifty PushNotification API
+ * Ncmb PushNotification API
  */
 var NCMB = (function() {
     /**

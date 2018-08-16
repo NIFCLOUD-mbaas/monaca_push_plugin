@@ -1,14 +1,14 @@
-package plugin.push.nifty;
+package plugin.push.nifcloud;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 /**
- * Nifty push notification data holder.
+ * Ncmb push notification data holder.
  */
-public class NiftyData {
-    public static final String PUSH_ID_KEY = "com.nifty.PushId";
-    public static final String JSON_KEY = "com.nifty.Data";
+public class NcmbData {
+    public static final String PUSH_ID_KEY = "com.nifcloud.mbaas.PushId";
+    public static final String JSON_KEY = "com.nifcloud.mbaas.Data";
 
     /**
      * Data holder.
@@ -20,7 +20,7 @@ public class NiftyData {
      *
      * @param bundle
      */
-    public NiftyData(final Bundle bundle) {
+    public NcmbData(final Bundle bundle) {
         mBundle = new Bundle();
 
         if (null != bundle) {
@@ -29,7 +29,7 @@ public class NiftyData {
     }
 
     /**
-     * Create dummy intent for Nifty SDK.
+     * Create dummy intent for Ncmb SDK.
      *
      * @return dummy intent which has push notification data
      */
@@ -44,16 +44,16 @@ public class NiftyData {
     }
 
     /**
-     * Is from nifty or not.
+     * Is from ncmb or not.
      *
-     * @return true=from nifty, false=otherwise
+     * @return true=from ncmb, false=otherwise
      */
-    public boolean isFromNifty() {
+    public boolean isFromNcmb() {
         return mBundle.containsKey(PUSH_ID_KEY);
     }
 
     /**
-     * Get nifty push ID.
+     * Get ncmb push ID.
      *
      * @return
      */
@@ -84,7 +84,7 @@ public class NiftyData {
      *
      * @param intent
      */
-    public static void removeNiftyData(final Intent intent) {
+    public static void removeNcmbData(final Intent intent) {
         if (intent.hasExtra(PUSH_ID_KEY)) {
             intent.removeExtra(PUSH_ID_KEY);
         }

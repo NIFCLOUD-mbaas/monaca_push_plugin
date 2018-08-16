@@ -4,7 +4,7 @@
   "description": "NIF Cloud mobile backend Push Notification Plugin for Monaca",
   "author": "",
   "license": "Apache License 2.0",
-  "homepage": "http://mb.cloud.nifty.com/",
+  "homepage": "https://mbaas.nifcloud.com/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NIFCloud-mbaas/monaca_push_plugin"
@@ -12,7 +12,7 @@
   "maintainers": [
     {
       "name": "NIF Cloud mobile backend Team",
-      "url": "http://mb.cloud.nifty.com/support.htm"
+      "url": "https://mbaas.nifcloud.com/support.htm"
     }
   ],
   "tags": [

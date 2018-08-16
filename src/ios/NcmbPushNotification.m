@@ -1,26 +1,26 @@
 //
-//  NiftyPushNotification.m
+//  NcmbPushNotification.m
 //  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 
-#import "AppDelegate+NiftyCloud.h"
-#import "NiftyPushNotification.h"
+#import "AppDelegate+NifCloud.h"
+#import "NcmbPushNotification.h"
 #import "NCMB/NCMB.h"
 
-@implementation NiftyPushNotification
-static NSString *const kNiftyPushReceiptKey     = @"kNiftyPushReceiptStatus";
-static NSString* const kNiftyPushAppKey         = @"APP_KEY";
-static NSString* const kNiftyPushClientKey      = @"CLIENT_KEY";
-static NSString* const kNiftyPushDeviceTokenKey = @"DEVICE_TOKEN";
+@implementation NcmbPushNotification
+static NSString *const kNcmbPushReceiptKey     = @"kNcmbPushReceiptStatus";
+static NSString* const kNcmbPushAppKey         = @"APP_KEY";
+static NSString* const kNcmbPushClientKey      = @"CLIENT_KEY";
+static NSString* const kNcmbPushDeviceTokenKey = @"DEVICE_TOKEN";
 
-static NSString* const kNiftyPushErrorMessageFailedToRegisterAPNS = @"Failed to register APNS.";
-static NSString* const kNiftyPushErrorMessageInvalidParams = @"Parameters are invalid.";
-static NSString* const kNiftyPushErrorMessageNoDeviceToken = @"Device Token does not exist.";
-static NSString* const kNiftyPushErrorMessageFailedToSave  = @"installation save error.";
-static NSString* const kNiftyPushErrorMessageRecoveryError = @"installation recovery error.";
+static NSString* const kNcmbPushErrorMessageFailedToRegisterAPNS = @"Failed to register APNS.";
+static NSString* const kNcmbPushErrorMessageInvalidParams = @"Parameters are invalid.";
+static NSString* const kNcmbPushErrorMessageNoDeviceToken = @"Device Token does not exist.";
+static NSString* const kNcmbPushErrorMessageFailedToSave  = @"installation save error.";
+static NSString* const kNcmbPushErrorMessageRecoveryError = @"installation recovery error.";
 
-static NSString* const kNiftyPushErrorCodeFailedToRegisterAPNS = @"EP000001";
-static NSString* const kNiftyPushErrorCodeInvalidParams        = @"EP000002";
+static NSString* const kNcmbPushErrorCodeFailedToRegisterAPNS = @"EP000001";
+static NSString* const kNcmbPushErrorCodeInvalidParams        = @"EP000002";
 
 static BOOL hasSetup = NO;
 
@@ -35,28 +35,28 @@ static BOOL hasSetup = NO;
  * Get device token (APNS) from storage.
  */
 + (NSData*) getDeviceTokenAPNS {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kNiftyPushDeviceTokenKey];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kNcmbPushDeviceTokenKey];
 }
 
 /**
  * Is receipt status ok or not.
  */
 + (BOOL) isReceiptStatusOk {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kNiftyPushReceiptKey];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kNcmbPushReceiptKey];
 }
 
 /**
  * Get application key from storage.
  */
 + (NSString*) getAppKey {
-    return [[NSUserDefaults standardUserDefaults]objectForKey:kNiftyPushAppKey];
+    return [[NSUserDefaults standardUserDefaults]objectForKey:kNcmbPushAppKey];
 }
 
 /**
  * Get client key from storage.
  */
 + (NSString*) getClientKey {
-    return [[NSUserDefaults standardUserDefaults]objectForKey:kNiftyPushClientKey];
+    return [[NSUserDefaults standardUserDefaults]objectForKey:kNcmbPushClientKey];
 }
 
 /**
@@ -82,7 +82,7 @@ static BOOL hasSetup = NO;
         return;
     }
 
-    if ([NiftyPushNotification isReceiptStatusOk]) {
+    if ([NcmbPushNotification isReceiptStatusOk]) {
         [NCMBAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     }
 }
@@ -95,7 +95,7 @@ static BOOL hasSetup = NO;
         return;
     }
 
-    if ([NiftyPushNotification isReceiptStatusOk]) {
+    if ([NcmbPushNotification isReceiptStatusOk]) {
         [NCMBAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
     }
 }
@@ -119,7 +119,7 @@ static BOOL hasSetup = NO;
 - (void) pluginInitialize {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(watchPageLoadStart) name:CDVPluginResetNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(watchPageLoadFinish) name:CDVPageDidLoadNotification object:nil];
-    _queue = [[NiftyQueue alloc] init];
+    _queue = [[NcmbQueue alloc] init];
     _isFailedToRegisterAPNS = NO;
 }
 
@@ -147,20 +147,20 @@ static BOOL hasSetup = NO;
     _setDeviceTokenCallbackId = command.callbackId;
 
     if (![self validateInputParameters:command.arguments]) {
-        [self callSetDeviceTokenErrorOnUiThread:kNiftyPushErrorCodeInvalidParams message: kNiftyPushErrorMessageInvalidParams];
+        [self callSetDeviceTokenErrorOnUiThread:kNcmbPushErrorCodeInvalidParams message: kNcmbPushErrorMessageInvalidParams];
         return;
     }
 
     NSString* appKey    = [command.arguments objectAtIndex:0];
     NSString* clientKey = [command.arguments objectAtIndex:1];
-    [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNiftyPushAppKey];
-    [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNiftyPushClientKey];
+    [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNcmbPushAppKey];
+    [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNcmbPushClientKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self installWithAppKey:appKey clientKey:clientKey deviceToken:[[self class] getDeviceTokenAPNS]];
 
     if (_isFailedToRegisterAPNS) {
         _isFailedToRegisterAPNS = NO;
-        [self callSetDeviceTokenErrorOnUiThread:kNiftyPushErrorCodeFailedToRegisterAPNS message: kNiftyPushErrorMessageFailedToRegisterAPNS];
+        [self callSetDeviceTokenErrorOnUiThread:kNcmbPushErrorCodeFailedToRegisterAPNS message: kNcmbPushErrorMessageFailedToRegisterAPNS];
     }
 }
 
@@ -209,14 +209,14 @@ static BOOL hasSetup = NO;
 }
 
 /**
- * Set APNS device token into Nifty mBaas.
+ * Set APNS device token into Ncmb mBaas.
  *
  * Execute in
  *   self::setDeviceToken
  *   AppDelegate::didRegisterForRemoteNotificationsWithDeviceToken
  */
 - (void) setDeviceTokenAPNS: (NSData*)deviceToken {
-    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:kNiftyPushDeviceTokenKey];
+    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:kNcmbPushDeviceTokenKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self installWithAppKey:[[self class] getAppKey] clientKey:[[self class] getClientKey] deviceToken:deviceToken];
 }
@@ -227,7 +227,7 @@ static BOOL hasSetup = NO;
  */
 - (void) failedToRegisterAPNS {
     if (_setDeviceTokenCallbackId != nil) {
-        [self callSetDeviceTokenErrorOnUiThread:kNiftyPushErrorCodeFailedToRegisterAPNS message:kNiftyPushErrorMessageFailedToRegisterAPNS];
+        [self callSetDeviceTokenErrorOnUiThread:kNcmbPushErrorCodeFailedToRegisterAPNS message:kNcmbPushErrorMessageFailedToRegisterAPNS];
     } else {
         _isFailedToRegisterAPNS = YES;
     }
@@ -257,7 +257,7 @@ static BOOL hasSetup = NO;
 }
 
 /**
- * Save device token in nifty mBaas.
+ * Save device token in Ncmb mBaas.
  */
 - (void)saveInBackgroundWithBlock:(NSData*)deviceToken withInstallation:(NCMBInstallation *) inst {
     NCMBInstallation *installation = inst;
@@ -275,7 +275,7 @@ static BOOL hasSetup = NO;
                 installation.objectId = nil;
                 [self saveInBackgroundWithBlock:deviceToken withInstallation:installation];
             } else {
-                [self callSetDeviceTokenErrorOnUiThreadWith: error.code message:kNiftyPushErrorMessageFailedToSave];
+                [self callSetDeviceTokenErrorOnUiThreadWith: error.code message:kNcmbPushErrorMessageFailedToSave];
             }
         }
     }];
@@ -294,11 +294,11 @@ static BOOL hasSetup = NO;
                 if (!error) {
                     [self callSetDeviceTokenSuccessOnUiThread];
                 } else {
-                    [self callSetDeviceTokenErrorOnUiThreadWith:error.code message:kNiftyPushErrorMessageFailedToSave];
+                    [self callSetDeviceTokenErrorOnUiThreadWith:error.code message:kNcmbPushErrorMessageFailedToSave];
                 }
             }];
         } else {
-            [self callSetDeviceTokenErrorOnUiThreadWith:searchErr.code message:kNiftyPushErrorMessageNoDeviceToken];
+            [self callSetDeviceTokenErrorOnUiThreadWith:searchErr.code message:kNcmbPushErrorMessageNoDeviceToken];
         }
     } ];
 
@@ -325,7 +325,7 @@ static BOOL hasSetup = NO;
  */
 - (void)setReceiptStatus:(CDVInvokedUrlCommand*)command {
     NSNumber *status = [command.arguments objectAtIndex:0];
-    [[NSUserDefaults standardUserDefaults] setObject:status forKey:kNiftyPushReceiptKey];
+    [[NSUserDefaults standardUserDefaults] setObject:status forKey:kNcmbPushReceiptKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
