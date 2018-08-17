@@ -58,8 +58,8 @@
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
         <framework src="com.android.support:appcompat-v7:26.0.2" />
         <framework src="com.google.code.gson:gson:2.3.1" />
-        <framework src="com.google.firebase:firebase-messaging:15.0.0" />
-        <framework src="com.google.android.gms:play-services-base:15.0.0" />
+        <framework src="com.google.firebase:firebase-messaging:17.1.0" />
+        <framework src="com.google.android.gms:play-services-base:15.0.1" />
         <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
         <source-file src="src/android/NiftyPushPlugin.java" target-dir="src/plugin/push/nifty/" />
