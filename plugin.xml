@@ -8,7 +8,7 @@
 -->
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    id="plugin.push.nifty"
+    id="plugin.push.nifcloud"
     version="2.0.11">
 
     <name>NIFCloudMB</name>
@@ -19,7 +19,7 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module src="www/nifty.js" name="NiftyCloud">
+    <js-module src="www/ncmb.js" name="NifCloud">
         <clobbers target="NCMB.monaca" />
         <runs/>
     </js-module>
@@ -27,8 +27,8 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="NiftyPushPlugin" >
-                <param name="android-package" value="plugin.push.nifty.NiftyPushPlugin"/>
+            <feature name="NcmbPushPlugin" >
+                <param name="android-package" value="plugin.push.nifcloud.NcmbPushPlugin"/>
                 <param name="onload" value="true" />
             </feature>
         </config-file>
@@ -47,7 +47,7 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
-                android:name="com.nifty.cloud.mb.core.NCMBFirebaseMessagingService">
+                android:name="com.nifcloud.mbaas.core.NCMBFirebaseMessagingService">
                 <intent-filter>
                     <action android:name="com.google.firebase.MESSAGING_EVENT"/>
                 </intent-filter>
@@ -61,15 +61,15 @@
         <framework src="com.google.firebase:firebase-messaging:17.1.0" />
         <framework src="com.google.android.gms:play-services-base:15.0.1" />
         <lib-file src="src/android/libs/NCMB.jar" />
-        <source-file src="src/android/NiftyData.java" target-dir="src/plugin/push/nifty/" />
-        <source-file src="src/android/NiftyPushPlugin.java" target-dir="src/plugin/push/nifty/" />
+        <source-file src="src/android/NcmbData.java" target-dir="src/plugin/push/nifcloud/" />
+        <source-file src="src/android/NcmbPushPlugin.java" target-dir="src/plugin/push/nifcloud/" />
     </platform>
 
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="NiftyPushPlugin">
-                <param name="ios-package" value="NiftyPushNotification"/>
+            <feature name="NcmbPushPlugin">
+                <param name="ios-package" value="NcmbPushNotification"/>
                 <param name="onload" value="true"/>
             </feature>
         </config-file>
@@ -79,12 +79,12 @@
         <config-file target="*-Release.plist" parent="aps-environment">
           <string>production</string>
         </config-file>
-        <header-file src="src/ios/AppDelegate+NiftyCloud.h" />
-        <source-file src="src/ios/AppDelegate+NiftyCloud.m" />
-        <header-file src="src/ios/NiftyPushNotification.h" />
-        <source-file src="src/ios/NiftyPushNotification.m" />
-        <header-file src="src/ios/NiftyQueue.h" />
-        <source-file src="src/ios/NiftyQueue.m" />
+        <header-file src="src/ios/AppDelegate+NifCloud.h" />
+        <source-file src="src/ios/AppDelegate+NifCloud.m" />
+        <header-file src="src/ios/NcmbPushNotification.h" />
+        <source-file src="src/ios/NcmbPushNotification.m" />
+        <header-file src="src/ios/NcmbQueue.h" />
+        <source-file src="src/ios/NcmbQueue.m" />
         <header-file src="src/ios/NCMB/NCMB.h" target-dir="NCMB/" />
         <source-file src="src/ios/NCMB/NCMB.m" target-dir="NCMB/" />
         <header-file src="src/ios/NCMB/NCMB_umbrella.h" target-dir="NCMB/" />

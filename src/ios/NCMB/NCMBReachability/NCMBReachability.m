@@ -23,7 +23,7 @@
 #import <ifaddrs.h>
 #import <net/if.h>
 
-static NSString *const kHostName = @"mb.api.cloud.nifty.com";
+static NSString *const kHostName = @"mbaas.api.nifcloud.com";
 
 /**
  通信状況が変化した際に呼び出されるコールバックメソッド
@@ -35,25 +35,6 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target,
     
     //通信状況に応じてファイルに書き出した処理を実行するメソッドを呼び出す
     [[NCMBReachability sharedInstance] reachabilityChanged];
-}
-
-
-static void PrintReachabilityFlags(SCNetworkReachabilityFlags flags, const char* comment)
-{
-    
-    NSLog(@"Reachability Flag Status: %c%c %c%c%c%c%c%c%c %s\n",
-          (flags & kSCNetworkReachabilityFlagsIsWWAN)               ? 'W' : '-',
-          (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
-          
-          (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
-          (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
-          (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
-          (flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
-          (flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
-          (flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
-          (flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
-          comment
-          );
 }
 
 @implementation NCMBReachability {

@@ -1,18 +1,18 @@
-package plugin.push.nifty;
+package plugin.push.nifcloud;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.nifty.cloud.mb.core.DoneCallback;
-import com.nifty.cloud.mb.core.TokenCallback;
-import com.nifty.cloud.mb.core.FindCallback;
-import com.nifty.cloud.mb.core.NCMB;
-import com.nifty.cloud.mb.core.NCMBException;
-import com.nifty.cloud.mb.core.NCMBInstallation;
-import com.nifty.cloud.mb.core.NCMBPush;
-import com.nifty.cloud.mb.core.NCMBQuery;
+import com.nifcloud.mbaas.core.DoneCallback;
+import com.nifcloud.mbaas.core.TokenCallback;
+import com.nifcloud.mbaas.core.FindCallback;
+import com.nifcloud.mbaas.core.NCMB;
+import com.nifcloud.mbaas.core.NCMBException;
+import com.nifcloud.mbaas.core.NCMBInstallation;
+import com.nifcloud.mbaas.core.NCMBPush;
+import com.nifcloud.mbaas.core.NCMBQuery;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -26,11 +26,11 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
- * Nifty push notification plugin.
+ * Ncmb push notification plugin.
  */
-public class NiftyPushPlugin extends CordovaPlugin
+public class NcmbPushPlugin extends CordovaPlugin
 {
-    private static final String PREFS_NAME = "kNiftyPushPrefs";
+    private static final String PREFS_NAME = "kNcmbPushPrefs";
     private static final String APP_KEY = "app_key";
     private static final String CLIENT_KEY = "client_key";
     private static final String RECEIPT_STATUS = "receipt_status";
@@ -41,16 +41,16 @@ public class NiftyPushPlugin extends CordovaPlugin
     private CallbackContext mPushReceivedCallbackContext;
 
     /**
-     * Nifty push notification data queue to send into webview.
+     * Ncmb push notification data queue to send into webview.
      */
-    private Queue<NiftyData> mPushQueue;
+    private Queue<NcmbData> mPushQueue;
 
     /**
      * Initialize plugin.
      */
     @Override
     protected void pluginInitialize() {
-        mPushQueue = new LinkedBlockingQueue<NiftyData>();
+        mPushQueue = new LinkedBlockingQueue<NcmbData>();
         SharedPreferences prefs = getSharedPrefs();
         final String appKey = prefs.getString(APP_KEY, "");
         final String clientKey = prefs.getString(CLIENT_KEY, "");
@@ -81,7 +81,7 @@ public class NiftyPushPlugin extends CordovaPlugin
     }
 
     /**
-     * Check nifty notification in intent.
+     * Check ncmb notification in intent.
      *
      * @param intent
      * @return true=handle notification, false=otherwise
@@ -95,21 +95,21 @@ public class NiftyPushPlugin extends CordovaPlugin
             return false;
         }
 
-        NiftyData.removeNiftyData(intent);
+        NcmbData.removeNcmbData(intent);
 
         return true;
     }
 
     /**
-     * Check nifty notification in bundle.
+     * Check ncmb notification in bundle.
      *
      * @param bundle
      * @return true=send into webview or push into queue, false=otherwise
      */
     private boolean checkNotification(Bundle bundle) {
-        NiftyData data = new NiftyData(bundle);
+        NcmbData data = new NcmbData(bundle);
 
-        if (!data.isFromNifty()) {
+        if (!data.isFromNcmb()) {
             return false;
         }
 
@@ -131,10 +131,10 @@ public class NiftyPushPlugin extends CordovaPlugin
      *
      * @param data
      */
-    private synchronized void sendNotificationJson(final NiftyData data) throws JSONException {
+    private synchronized void sendNotificationJson(final NcmbData data) throws JSONException {
         if (null == mPushReceivedCallbackContext) {
             return;
-        } else if (!data.isFromNifty()) {
+        } else if (!data.isFromNcmb()) {
             return;
         }
 
@@ -224,7 +224,7 @@ public class NiftyPushPlugin extends CordovaPlugin
     }
 
     /**
-     * Set device token to nifty and save in storage.
+     * Set device token to ncmb and save in storage.
      *
      * @param args
      * @param callbackContext
