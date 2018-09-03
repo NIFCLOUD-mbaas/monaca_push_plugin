@@ -1,7 +1,7 @@
 {
   "name": "ncmb-push-monaca-plugin",
-  "version": "2.0.11",
-  "description": "NIF Cloud mobile backend Push Notification Plugin for Monaca",
+  "version": "3.0.0",
+  "description": "NIFCloud mobile backend Push Notification Plugin for Monaca",
   "author": "",
   "license": "Apache License 2.0",
   "homepage": "https://mbaas.nifcloud.com/",
@@ -11,7 +11,7 @@
   },
   "maintainers": [
     {
-      "name": "NIF Cloud mobile backend Team",
+      "name": "NIFCloud mobile backend Team",
       "url": "https://mbaas.nifcloud.com/support.htm"
     }
   ],
