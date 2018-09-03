@@ -1,12 +1,12 @@
 //
-//  NiftyQueue.m
+//  NcmbQueue.m
 //  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 //
 
-#import "NiftyQueue.h"
+#import "NcmbQueue.h"
 
-@implementation NiftyQueue
+@implementation NcmbQueue
 
 - (id)init {
     self = [super init];

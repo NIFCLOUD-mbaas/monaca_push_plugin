@@ -1,15 +1,15 @@
 //
-//  NiftyPushNotification.h
+//  NcmbPushNotification.h
 //  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 
 #import <Cordova/CDVPlugin.h>
-#import "NiftyQueue.h"
+#import "NcmbQueue.h"
 
-@interface NiftyPushNotification : CDVPlugin {
+@interface NcmbPushNotification : CDVPlugin {
     NSString* _setDeviceTokenCallbackId;
     NSString* _pushReceivedCallbackId;
-    NiftyQueue* _queue;
+    NcmbQueue* _queue;
     BOOL _isFailedToRegisterAPNS;
     BOOL _webViewLoadFinished;
 }
