@@ -1,4 +1,4 @@
-# NIF Cloud Mobile Backend Push Notification Plugin for Monaca
+# NIFCloud Mobile Backend Push Notification Plugin for Monaca
 
 ---
 
@@ -28,7 +28,7 @@ Download your Firebase configuration file - google-services.json, and place them
 
 ### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey, successCallback, errorCallback)
 
-Register device-token to NIF cloud mobile backend datastore (Installation class).
+Register device-token to NIFCloud mobile backend datastore (Installation class).
 
  - (String)applicationKey
  - (String)clientKey
