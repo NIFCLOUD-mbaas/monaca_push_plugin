@@ -1,14 +1,14 @@
 //
-//  AppDelegate+NiftyCloud.m
+//  AppDelegate+NifCloud.m
 //  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 //
 
-#import "AppDelegate+NiftyCloud.h"
-#import "NiftyPushNotification.h"
+#import "AppDelegate+NifCloud.h"
+#import "NcmbPushNotification.h"
 #import <objc/runtime.h>
 
-@implementation AppDelegate (NiftyCloud)
+@implementation AppDelegate (NifCloud)
 
 /**
  * Load.
@@ -32,7 +32,7 @@
  * Execute after didFinishLaunchingWithOptions.
  */
 - (void)setupNotification:(NSNotification *)notification {
-    [NiftyPushNotification setupNCMB];
+    [NcmbPushNotification setupNCMB];
 
     // check if received push notification
     NSDictionary *launchOptions = [notification userInfo];
@@ -41,21 +41,21 @@
         NSDictionary *userInfo = [launchOptions objectForKey: @"UIApplicationLaunchOptionsRemoteNotificationKey"];
 
         if (userInfo != nil){
-            NiftyPushNotification *nifty = [self getNiftyPushNotification];
+            NcmbPushNotification *ncmb = [self getNcmbPushNotification];
 
-            if (nifty != nil) {
-                [nifty addJson:[userInfo mutableCopy] withAppIsActive:NO];
+            if (ncmb != nil) {
+                [ncmb addJson:[userInfo mutableCopy] withAppIsActive:NO];
             }
 
-            [NiftyPushNotification trackAppOpenedWithLaunchOptions:launchOptions];
-            [NiftyPushNotification handleRichPush:userInfo];
+            [NcmbPushNotification trackAppOpenedWithLaunchOptions:launchOptions];
+            [NcmbPushNotification handleRichPush:userInfo];
         }
     }
 }
 
 - (void) registerForRemoteNotifications
 {
-    [NiftyPushNotification setupNCMB];
+    [NcmbPushNotification setupNCMB];
 
     UIApplication const *application = [UIApplication sharedApplication];
 
@@ -76,9 +76,9 @@
                                           [application registerForRemoteNotifications];
                                       });
                                   } else {
-                                      NiftyPushNotification *nifty = [self getNiftyPushNotification];
-                                      if (nifty != nil) {
-                                          [nifty failedToRegisterAPNS];
+                                      NcmbPushNotification *ncmb = [self getNcmbPushNotification];
+                                      if (ncmb != nil) {
+                                          [ncmb failedToRegisterAPNS];
                                       }
                                   }
                               }];
@@ -113,10 +113,10 @@
  * Success to regiter remote notification.
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NiftyPushNotification *nifty = [self getNiftyPushNotification];
+    NcmbPushNotification *ncmb = [self getNcmbPushNotification];
     
-    if (nifty != nil) {
-        [nifty setDeviceTokenAPNS:deviceToken];
+    if (ncmb != nil) {
+        [ncmb setDeviceTokenAPNS:deviceToken];
     }
 }
 
@@ -124,10 +124,10 @@
  * Fail to register remote notification.
  */
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)err{
-    NiftyPushNotification *nifty = [self getNiftyPushNotification];
+    NcmbPushNotification *ncmb = [self getNcmbPushNotification];
     
-    if (nifty != nil) {
-        [nifty failedToRegisterAPNS];
+    if (ncmb != nil) {
+        [ncmb failedToRegisterAPNS];
     }
 }
 
@@ -135,15 +135,15 @@
  * Did receive remote notification.
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NiftyPushNotification *nifty = [self getNiftyPushNotification];
+    NcmbPushNotification *ncmb = [self getNcmbPushNotification];
     NSMutableDictionary* receivedPushInfo = [userInfo mutableCopy];
     
-    if (nifty != nil) {
-        [nifty addJson:receivedPushInfo withAppIsActive:(application.applicationState == UIApplicationStateActive)];
+    if (ncmb != nil) {
+        [ncmb addJson:receivedPushInfo withAppIsActive:(application.applicationState == UIApplicationStateActive)];
     }
     
-    [NiftyPushNotification trackAppOpenedWithRemoteNotificationPayload:userInfo];
-    [NiftyPushNotification handleRichPush:userInfo];
+    [NcmbPushNotification trackAppOpenedWithRemoteNotificationPayload:userInfo];
+    [NcmbPushNotification handleRichPush:userInfo];
 }
 
 /**
@@ -159,21 +159,21 @@
  */
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     application.applicationIconBadgeNumber = 0;
-    NiftyPushNotification* nifty = [self getNiftyPushNotification];
+    NcmbPushNotification* ncmb = [self getNcmbPushNotification];
     
-    if (nifty != nil) {
-        [nifty sendAllJsons];
+    if (ncmb != nil) {
+        [ncmb sendAllJsons];
     }
 }
 
 /**
- * Get nifty push notification instance.
+ * Get ncmb push notification instance.
  */
-- (NiftyPushNotification*)getNiftyPushNotification {
-    id instance = [self.viewController.pluginObjects objectForKey:@"NiftyPushNotification"];
+- (NcmbPushNotification*)getNcmbPushNotification {
+    id instance = [self.viewController.pluginObjects objectForKey:@"NcmbPushNotification"];
     
-    if ([instance isKindOfClass:[NiftyPushNotification class]]) {
-        return (NiftyPushNotification*)instance;
+    if ([instance isKindOfClass:[NcmbPushNotification class]]) {
+        return (NcmbPushNotification*)instance;
     }
 
     return nil;

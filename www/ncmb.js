@@ -1,5 +1,5 @@
 /**
- * Nifty PushNotification API.
+ * Ncmb PushNotification API.
  */
 var argscheck = require('cordova/argscheck'),
     channel = require('cordova/channel'),
@@ -54,10 +54,10 @@ var DataQueue = (function() {
 /**
  * Plugin name
  */
-var pluginName = 'NiftyPushPlugin';
+var pluginName = 'NcmbPushPlugin';
 
 /**
- * Nifty PushNotification API
+ * Ncmb PushNotification API
  */
 var NCMB = (function() {
     /**
@@ -73,15 +73,14 @@ var NCMB = (function() {
      *
      * @param {String} applicationKey
      * @param {String} clientKey
-     * @param {String} senderId
      * @param {Function} success (OPTIONAL)
      * @param {Function} error (OPTIONAL)
      */
-    NCMB.prototype.setDeviceToken = function (applicationKey, clientKey, senderId, success, error) {
-        argscheck.checkArgs('sssFF', 'NCMB.monaca.setDeviceToken', arguments);
+    NCMB.prototype.setDeviceToken = function (applicationKey, clientKey, success, error) {
+        argscheck.checkArgs('ssFF', 'NCMB.monaca.setDeviceToken', arguments);
         success = success || function() {};
         error = error || function() {};
-        exec(success, error, pluginName, 'setDeviceToken', [applicationKey, clientKey, senderId]);
+        exec(success, error, pluginName, 'setDeviceToken', [applicationKey, clientKey]);
     };
 
     /**

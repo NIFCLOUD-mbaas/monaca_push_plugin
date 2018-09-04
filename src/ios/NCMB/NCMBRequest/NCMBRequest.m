@@ -20,7 +20,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "NCMBDateFormat.h"
 
-static NSString *const kEndPoint            = @"https://mb.api.cloud.nifty.com";
+static NSString *const kEndPoint            = @"https://mbaas.api.nifcloud.com";
 static NSString *const kAPIVersion          = @"2013-09-01";
 static NSString *const appKeyField       = @"X-NCMB-Application-Key";
 static NSString *const timestampField    = @"X-NCMB-Timestamp";
@@ -57,7 +57,7 @@ static NSString *const signatureVersion   = @"SignatureVersion=2";
                                   method:method
                                timestamp:timestampStr] forHTTPHeaderField:signatureField];
     
-    NSRange range = [url.description rangeOfString:@"script.mb.api.cloud.nifty.com"];
+    NSRange range = [url.description rangeOfString:@"script.mbaas.api.nifcloud.com"];
     if(![headers objectForKey:@"Content-Type"] || range.location != NSNotFound){
         [self setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
@@ -78,7 +78,7 @@ static NSString *const signatureVersion   = @"SignatureVersion=2";
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@",kEndPoint,kAPIVersion,path]];
     NSData *bodyData = nil;
-    if (body != nil && [body count] > 0) {
+    if (body != nil) {
         NSError *error = nil;
         bodyData = [NSJSONSerialization dataWithJSONObject:body
                                                    options:kNilOptions
@@ -122,8 +122,10 @@ static NSString *const signatureVersion   = @"SignatureVersion=2";
                       signatureVersion,
                       [NSString stringWithFormat:@"%@=%@", appKeyField, self.applicationKey],
                       [NSString stringWithFormat:@"%@=%@", timestampField, timestamp]];
-    if (components.percentEncodedQuery != nil) {
-        self.signature = [self.signature stringByAppendingString:[NSString stringWithFormat:@"&%@", components.percentEncodedQuery]];
+    if (components.percentEncodedQuery != nil && components.percentEncodedQuery.length > 0) {
+        if ([@"GET" isEqualToString:method]) {
+            self.signature = [self.signature stringByAppendingString:[NSString stringWithFormat:@"&%@", components.percentEncodedQuery]];
+        }
     }
     
     return [NCMBRequest encodingSigneture:self.signature method:self];
