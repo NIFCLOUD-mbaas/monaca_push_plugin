@@ -9,7 +9,7 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifcloud"
-    version="3.0.0">
+    version="3.0.1">
 
     <name>NIFCloudMB</name>
     <description>NIFCloud Mobile Backend Push Notification Plugin</description>
