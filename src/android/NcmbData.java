@@ -3,6 +3,11 @@ package plugin.push.nifcloud;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Set;
+
 /**
  * Ncmb push notification data holder.
  */
@@ -77,6 +82,20 @@ public class NcmbData {
      */
     public String getJson() {
         return mBundle.getString(JSON_KEY);
+    }
+
+    public JSONObject getAllData() {
+        JSONObject json = new JSONObject();
+        Set<String> keys = mBundle.keySet();
+        for (String key : keys) {
+            try {
+                json.put(key, mBundle.get(key));
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return json;
     }
 
     /**

@@ -144,6 +144,9 @@ public class NcmbPushPlugin extends CordovaPlugin
         } else {
             json = new JSONObject();
         }
+
+        json.put("_notification", data.getAllData());
+
         PluginResult result = new PluginResult(PluginResult.Status.OK, json);
         result.setKeepCallback(true);
         mPushReceivedCallbackContext.sendPluginResult(result);
