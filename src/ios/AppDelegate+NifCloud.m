@@ -51,6 +51,10 @@
             [NcmbPushNotification handleRichPush:userInfo];
         }
     }
+    if ([[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){10, 0, 0}]){
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+    }
 }
 
 - (void) registerForRemoteNotifications
