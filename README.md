@@ -13,7 +13,7 @@
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.0.0 ～ (※as of September, 2020)
+- v3.0.0 ～ (※as of January, 2020)
 
 ---
 
