@@ -9,10 +9,10 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifcloud"
-    version="3.0.6">
+    version="3.0.7">
 
-    <name>NIFCloudMB</name>
-    <description>NIFCloud Mobile Backend Push Notification Plugin</description>
+    <name>NIFCLOUDMB</name>
+    <description>NIFCLOUD Mobile Backend Push Notification Plugin</description>
     <license>Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>
