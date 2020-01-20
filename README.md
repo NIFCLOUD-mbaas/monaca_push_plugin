@@ -1,4 +1,4 @@
-# NIFCloud Mobile Backend Push Notification Plugin for Monaca
+# NIFCLOUD Mobile Backend Push Notification Plugin for Monaca
 
 ---
 
@@ -6,14 +6,14 @@
 
  - PhoneGap/Cordova 7.1, Cordova 9.0
  - iOS/Android Support OS version:
-    - iOS: see [iOS SDK](https://github.com/NIFCloud-mbaas/ncmb_ios) Specifications.
-    - Android: see [Android SDK](https://github.com/NIFCloud-mbaas/ncmb_android) Specifications.
+    - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
+    - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
 
 ## Support desk coverage version
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.0.0 ～ (※as of September, 2019)
+- v3.0.0 ～ (※as of January, 2020)
 
 ---
 
@@ -35,7 +35,7 @@ Download your Firebase configuration file - google-services.json, and place them
 
 ### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey, successCallback, errorCallback)
 
-Register device-token to NIFCloud mobile backend datastore (Installation class).
+Register device-token to NIFCLOUD mobile backend datastore (Installation class).
 
  - (String)applicationKey
  - (String)clientKey
