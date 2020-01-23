@@ -1,5 +1,5 @@
 /*
- Copyright 2017-2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+ Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Webkit/Webkit.h>
 
-@interface NCMBRichPushView : UIWebView
+@interface NCMBRichPushView : UIViewController
 
 - (void) appearWebView:(UIInterfaceOrientation)interfaceOrientation url:(NSString*)richUrl;
 - (void) sizingWebView:(UIInterfaceOrientation)interfaceOrientation;

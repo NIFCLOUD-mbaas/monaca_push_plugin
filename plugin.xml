@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   NIFCloud Mobile Backend Push Notification Plugin
-  Copyright 2017-2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+  Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
   GooglePlayServices library
   Copyright (c) 2013 The Chromium Authors. All rights reserved.
@@ -9,11 +9,11 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifcloud"
-    version="3.0.6">
+    version="3.0.7">
 
-    <name>NIFCloudMB</name>
-    <description>NIFCloud Mobile Backend Push Notification Plugin</description>
-    <license>Copyright 2017-2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
+    <name>NIFCLOUDMB</name>
+    <description>NIFCLOUD Mobile Backend Push Notification Plugin</description>
+    <license>Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />

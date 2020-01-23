@@ -1,5 +1,5 @@
 /*
- Copyright 2017-2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+ Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -151,9 +151,6 @@ static NCMBRichPushView *rv;
             UIInterfaceOrientation orientation = [[UIApplication sharedApplication]statusBarOrientation];
             [rv appearWebView:orientation url:urlStr];
         }
-        NSURL *url = [NSURL URLWithString:urlStr];
-        NSURLRequest *req = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:5];
-        [rv loadRequest:req];
     }
 }
 

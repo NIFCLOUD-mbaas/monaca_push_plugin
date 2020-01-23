@@ -1,5 +1,5 @@
 /*
- Copyright 2017-2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+ Copyright 2017-2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -84,6 +84,25 @@ static NSString *const kOSVersionFieldName = @"X-NCMB-OS-Version";
     NSString *path = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"#[]@!()*+,;\"<>\\%^`{|} \b\t\n\a\r"] invertedSet]];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@",kEndPoint,kAPIVersion,path]];
+    NSData *bodyData = nil;
+    if (body != nil) {
+        NSError *error = nil;
+        bodyData = [NSJSONSerialization dataWithJSONObject:body
+                                                   options:kNilOptions
+                                                     error:&error];
+        if (error) {
+            [NSException raise:NSInvalidArgumentException format:@"body data is invalid json format."];
+        }
+    }
+    return [self initWithURL:url method:method header:headers bodyData:bodyData];
+}
+
+-(instancetype)initWithURLStringForUser:(NSString *)urlString
+                          method:(NSString *)method
+                          header:(NSDictionary *)headers
+                            body:(NSDictionary *)body
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@",kEndPoint,kAPIVersion,urlString]];
     NSData *bodyData = nil;
     if (body != nil) {
         NSError *error = nil;
