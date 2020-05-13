@@ -156,7 +156,6 @@ static BOOL hasSetup = NO;
     [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNcmbPushAppKey];
     [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNcmbPushClientKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self installWithAppKey:appKey clientKey:clientKey deviceToken:[[self class] getDeviceTokenAPNS]];
 
     if (_isFailedToRegisterAPNS) {
         _isFailedToRegisterAPNS = NO;
