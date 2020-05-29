@@ -317,6 +317,18 @@ static BOOL hasSetup = NO;
     }];
 }
 
+/**
+ * Get deviceToken (cordova API).
+ * Do in background thread because of execution time.
+ */
+- (void)getDeviceToken:(CDVInvokedUrlCommand*)command {
+    [self.commandDelegate runInBackground:^{
+        NCMBInstallation *currentInstallation = [NCMBInstallation currentInstallation];
+        CDVPluginResult* getResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:currentInstallation.deviceToken];
+        [self.commandDelegate sendPluginResult:getResult callbackId:command.callbackId];
+    }];
+}
+
 #pragma mark - Checking receipt status
 
 /**

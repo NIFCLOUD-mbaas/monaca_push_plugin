@@ -192,6 +192,8 @@ public class NcmbPushPlugin extends CordovaPlugin
             return setDeviceToken(args, callbackContext);
         } else if (action.equals("getInstallationId")) {
             return getInstallationId(callbackContext);
+        } else if (action.equals("getDeviceToken")) {
+            return getDeviceToken(callbackContext);
         } else if (action.equals("setReceiptStatus")) {
             boolean flag = args.getBoolean(0);
             SharedPreferences prefs = getSharedPrefs();
@@ -362,6 +364,23 @@ public class NcmbPushPlugin extends CordovaPlugin
             return true;
         } catch(Exception e) {
             callbackContext.error("Failed to get installation Id.");
+            return false;
+        }
+    }
+
+    /**
+     * Get device token.
+     *
+     * @param callbackContext
+     * @return deviceToken
+     */
+    private boolean getDeviceToken(final CallbackContext callbackContext) {
+        try {
+            String token = NCMBInstallation.getCurrentInstallation().getDeviceToken();
+            callbackContext.success(token);
+            return true;
+        } catch(Exception e) {
+            callbackContext.error("Failed to get device token.");
             return false;
         }
     }
