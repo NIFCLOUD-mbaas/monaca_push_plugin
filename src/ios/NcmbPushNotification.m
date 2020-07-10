@@ -156,7 +156,6 @@ static BOOL hasSetup = NO;
     [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNcmbPushAppKey];
     [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNcmbPushClientKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self installWithAppKey:appKey clientKey:clientKey deviceToken:[[self class] getDeviceTokenAPNS]];
 
     if (_isFailedToRegisterAPNS) {
         _isFailedToRegisterAPNS = NO;
@@ -314,6 +313,18 @@ static BOOL hasSetup = NO;
     [self.commandDelegate runInBackground:^{
         NCMBInstallation *currentInstallation = [NCMBInstallation currentInstallation];
         CDVPluginResult* getResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:currentInstallation.objectId];
+        [self.commandDelegate sendPluginResult:getResult callbackId:command.callbackId];
+    }];
+}
+
+/**
+ * Get deviceToken (cordova API).
+ * Do in background thread because of execution time.
+ */
+- (void)getDeviceToken:(CDVInvokedUrlCommand*)command {
+    [self.commandDelegate runInBackground:^{
+        NCMBInstallation *currentInstallation = [NCMBInstallation currentInstallation];
+        CDVPluginResult* getResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:currentInstallation.deviceToken];
         [self.commandDelegate sendPluginResult:getResult callbackId:command.callbackId];
     }];
 }
