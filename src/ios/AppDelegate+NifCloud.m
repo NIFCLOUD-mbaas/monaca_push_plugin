@@ -55,6 +55,7 @@
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         center.delegate = self;
     }
+    [self registerForRemoteNotifications];
 }
 
 - (void) registerForRemoteNotifications

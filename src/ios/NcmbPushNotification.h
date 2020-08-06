@@ -30,6 +30,7 @@
 // call from JS
 - (void) setDeviceToken: (CDVInvokedUrlCommand*)command;
 - (void) getInstallationId: (CDVInvokedUrlCommand*)command;
+- (void) getDeviceToken: (CDVInvokedUrlCommand*)command;
 - (void) setReceiptStatus: (CDVInvokedUrlCommand*)command;
 - (void) getReceiptStatus: (CDVInvokedUrlCommand*)command;
 - (void) pushReceived: (CDVInvokedUrlCommand*)command;

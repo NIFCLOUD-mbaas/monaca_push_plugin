@@ -121,6 +121,16 @@ var NCMB = (function() {
     };
 
     /**
+     * Get device token.
+     *
+     * @param {Function} callback
+     */
+    NCMB.prototype.getDeviceToken = function(callback) {
+        argscheck.checkArgs('f', 'NCMB.monaca.getDeviceToken', arguments);
+        exec(callback, null, pluginName, 'getDeviceToken', []);
+    };
+
+    /**
      * Set receipt status.
      *
      * @param {boolean} status
