@@ -23,6 +23,7 @@ static NSString* const kNcmbPushErrorCodeFailedToRegisterAPNS = @"EP000001";
 static NSString* const kNcmbPushErrorCodeInvalidParams        = @"EP000002";
 
 static BOOL hasSetup = NO;
+static BOOL _isInitialStart = YES;
 
 /**
  * Has device token (APNS) in storage or not.
@@ -156,6 +157,12 @@ static BOOL hasSetup = NO;
     [[NSUserDefaults standardUserDefaults] setObject:appKey forKey:kNcmbPushAppKey];
     [[NSUserDefaults standardUserDefaults] setObject:clientKey forKey:kNcmbPushClientKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if (!_isInitialStart) {
+        [self installWithAppKey:appKey clientKey:clientKey deviceToken:[[self class] getDeviceTokenAPNS]];
+    } else {
+        [self installWithAppKey:appKey clientKey:clientKey deviceToken:nil];
+    }
 
     if (_isFailedToRegisterAPNS) {
         _isFailedToRegisterAPNS = NO;
@@ -230,6 +237,15 @@ static BOOL hasSetup = NO;
     } else {
         _isFailedToRegisterAPNS = YES;
     }
+}
+
+/**
+ * Set initial app is false
+ * This method make sure that the app initial is false.
+ *
+*/
+- (void) setIsInitialStart {
+    _isInitialStart = NO;
 }
 
 /**
