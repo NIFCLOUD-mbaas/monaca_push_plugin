@@ -26,6 +26,7 @@
 - (void) failedToRegisterAPNS;
 - (void) addJson: (NSDictionary*)json withAppIsActive:(BOOL)isActive;
 - (void) sendAllJsons;
+- (void) setIsInitialStart;
 
 // call from JS
 - (void) setDeviceToken: (CDVInvokedUrlCommand*)command;
