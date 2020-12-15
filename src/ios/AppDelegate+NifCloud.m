@@ -55,7 +55,6 @@
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         center.delegate = self;
     }
-    [self registerForRemoteNotifications];
 }
 
 - (void) registerForRemoteNotifications
@@ -121,6 +120,7 @@
     NcmbPushNotification *ncmb = [self getNcmbPushNotification];
     
     if (ncmb != nil) {
+        [ncmb setIsInitialStart];
         [ncmb setDeviceTokenAPNS:deviceToken];
     }
 }
