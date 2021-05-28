@@ -8,6 +8,7 @@
  - iOS/Android Support OS version:
     - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
     - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
+        - Android 11 is not supported because it does not support Cordova 10.0
 
 ## Support desk coverage version
 
