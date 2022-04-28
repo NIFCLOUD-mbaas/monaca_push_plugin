@@ -53,6 +53,9 @@ function updateStringsXml(contents) {
     // strip non-default value
     strings = strings.replace(new RegExp('<string name="google_api_key">([^\@<]+?)</string>', 'i'), '');
 
+    // strip non-default value
+    strings = strings.replace(new RegExp('<string name="project_id">([^\@<]+?)</string>', 'i'), '');
+
     // strip empty lines
     strings = strings.replace(new RegExp('(\r\n|\n|\r)[ \t]*(\r\n|\n|\r)', 'gm'), '$1');
 
@@ -61,6 +64,9 @@ function updateStringsXml(contents) {
 
     // replace the default value
     strings = strings.replace(new RegExp('<string name="google_api_key">([^<]+?)</string>', 'i'), '<string name="google_api_key">' + json.client[0].api_key[0].current_key + '</string>');
+
+    // replace the default value
+    strings = strings.replace(new RegExp('<string name="project_id">([^<]+?)</string>', 'i'), '<string name="project_id">' + json.project_info.project_id + '</string>');
 
     fs.writeFileSync(PLATFORM.ANDROID.stringsXml, strings);
 }
