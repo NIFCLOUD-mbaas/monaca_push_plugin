@@ -59,7 +59,6 @@
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NcmbData.java" target-dir="src/plugin/push/nifcloud/" />
         <source-file src="src/android/NcmbPushPlugin.java" target-dir="src/plugin/push/nifcloud/" />
     </platform>
