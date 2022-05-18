@@ -33,14 +33,14 @@
             </feature>
         </config-file>
         <config-file parent="/resources" target="res/values/strings.xml">
-			    <string name="google_app_id">@string/google_app_id</string>
-		</config-file>
-		<config-file parent="/resources" target="res/values/strings.xml">
-			<string name="google_api_key">@string/google_api_key</string>
-		</config-file>
+            <string name="google_app_id">@string/google_app_id</string>
+        </config-file>
         <config-file parent="/resources" target="res/values/strings.xml">
-			<string name="project_id">@string/project_id</string>
-		</config-file>
+            <string name="google_api_key">@string/google_api_key</string>
+        </config-file>
+        <config-file parent="/resources" target="res/values/strings.xml">
+            <string name="project_id">@string/project_id</string>
+        </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
