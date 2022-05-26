@@ -50,7 +50,8 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
-                android:name="com.nifcloud.mbaas.core.NCMBFirebaseMessagingService">
+                android:name="com.nifcloud.mbaas.core.NCMBFirebaseMessagingService"
+                android:exported="false">
                 <intent-filter>
                     <action android:name="com.google.firebase.MESSAGING_EVENT"/>
                 </intent-filter>
