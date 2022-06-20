@@ -4,24 +4,23 @@
 
 ## Specifications
 
- - PhoneGap/Cordova 9.0, Cordova 10.0
+ - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
  - iOS/Android Support OS version:
     - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
     - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
-        - Android 11 is excluded because it is not supported by Cordova 10.0 (2021/6 updated)
 
 ## Support desk coverage version
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.0.10 ～ (※as of Feb,2022)
+- v3.0.10 ～ (※as of June,2022)
 
 ---
 
 ## Setup
 
 * Check the following [Japanese official document](https://mbaas.nifcloud.com/doc/current/push/basic_usage_javascript.html#%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E9%80%9A%E7%9F%A5%E3%81%AE%E5%8F%97%E4%BF%A1(Monaca)) for details on setup.
-* To use with Android devices, download your Firebase configuration file - google-services.json, and place them in the root folder of your cordova project.  Check out this [firebase article](https://support.google.com/firebase/answer/7015592) for details on how to download the files.
+* To use with Android devices, download your Firebase configuration file - google-services.json, and place them in the root folder of your Cordova project.  Check out this [Firebase article](https://support.google.com/firebase/answer/7015592) for details on how to download the files.
 
 ```
 - Your_monaca_project/
