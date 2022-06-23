@@ -9,7 +9,7 @@
 <plugin
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="plugin.push.nifcloud"
-    version="3.1.1">
+    version="3.1.2">
 
     <name>NIFCLOUDMB</name>
     <description>NIFCLOUD Mobile Backend Push Notification Plugin</description>
@@ -33,11 +33,14 @@
             </feature>
         </config-file>
         <config-file parent="/resources" target="res/values/strings.xml">
-			    <string name="google_app_id">@string/google_app_id</string>
-		</config-file>
-		<config-file parent="/resources" target="res/values/strings.xml">
-			<string name="google_api_key">@string/google_api_key</string>
-		</config-file>
+            <string name="google_app_id">@string/google_app_id</string>
+        </config-file>
+        <config-file parent="/resources" target="res/values/strings.xml">
+            <string name="google_api_key">@string/google_api_key</string>
+        </config-file>
+        <config-file parent="/resources" target="res/values/strings.xml">
+            <string name="project_id">@string/project_id</string>
+        </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -47,7 +50,8 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
-                android:name="com.nifcloud.mbaas.core.NCMBFirebaseMessagingService">
+                android:name="com.nifcloud.mbaas.core.NCMBFirebaseMessagingService"
+                android:exported="false">
                 <intent-filter>
                     <action android:name="com.google.firebase.MESSAGING_EVENT"/>
                 </intent-filter>
@@ -56,7 +60,6 @@
             <meta-data android:name="notificationOverlap" android:value="1"/>
         </config-file>
         <framework src="ncmb.gradle" custom="true" type="gradleReference"/>
-        <lib-file src="src/android/libs/NCMB.jar" />
         <source-file src="src/android/NcmbData.java" target-dir="src/plugin/push/nifcloud/" />
         <source-file src="src/android/NcmbPushPlugin.java" target-dir="src/plugin/push/nifcloud/" />
     </platform>
