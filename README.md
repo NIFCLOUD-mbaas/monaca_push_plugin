@@ -8,6 +8,7 @@
  - iOS/Android Support OS version:
     - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
     - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
+      - Android: ~ 12.x (Android SDK: ~32)
 
 ## Support desk coverage version
 
