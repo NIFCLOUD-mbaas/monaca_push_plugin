@@ -20,8 +20,6 @@
 [開発ガイドライン](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)をご覧ください。
 
 
----
-
 ## セットアップ
 
 * 詳細については[ドキュメント](https://mbaas.nifcloud.com/doc/current/push/basic_usage_javascript.html#%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E9%80%9A%E7%9F%A5%E3%81%AE%E5%8F%97%E4%BF%A1(Monaca))を併せてご確認ください.
@@ -36,7 +34,7 @@
     google-services.json       <--
     ...
 ```
----
+
 
 ## 使い方
 
@@ -84,7 +82,6 @@
 - (function)callback(deviceToken)
 
 
----
 
 ## 使用例
 
@@ -162,7 +159,6 @@ Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common
 
 - v3.0.10 ～ (※as of June,2022)
 
----
 
 ## Setup
 
@@ -178,7 +174,6 @@ Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common
     google-services.json       <--
     ...
 ```
----
 
 ## Methods
 
@@ -226,7 +221,6 @@ Get the Installation deviceToken for device.
 - (function)callback(deviceToken)
 
 
----
 
 ## Sample
 
