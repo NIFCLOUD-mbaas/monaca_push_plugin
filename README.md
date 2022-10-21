@@ -1,5 +1,7 @@
 # NIFCLOUD Mobile Backend Push Notification Plugin for Monaca
 
+- [Click here to read in English](##Specifications)
+
 ---
 ## 動作環境
 
