@@ -4,9 +4,9 @@
 ## 対応環境
 
  - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
- - iOS/Android Support OS version:
-    - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
-    - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
+ - iOS/Android OS 対応バージョン:
+    - iOS: [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) の対応バージョンをご確認ください。
+    - Android: [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) の対応バージョンをご確認ください。
 
 ## テクニカルサポート窓口対応バージョン
 
@@ -40,7 +40,7 @@
 
 ### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey, successCallback, errorCallback)
 
-ニフクラ mobile backendのデータストア(Installationクラス)にデバイストークンを登録します。
+ニフクラ mobile backendのデータストア(Installationクラス)にdeviceTokenを登録します。
 
  - (String)applicationKey
  - (String)clientKey
@@ -61,7 +61,7 @@
 
 ### window.NCMB.monaca.setReceiptStatus(flag, callback);
 
-プッシュ通知の開封状況をサーバーに登録します。
+プッシュ通知の開封状況をサーバーに登録します。  
 これはプッシュ通知の開封状況についての統計グラフに利用されます。
 
 - (Boolean) flag
