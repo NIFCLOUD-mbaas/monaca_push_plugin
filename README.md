@@ -1,26 +1,26 @@
 # NIFCLOUD Mobile Backend Push Notification Plugin for Monaca
 
 ---
-## 対応環境
+## 動作環境
 
  - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
  - iOS/Android OS 対応バージョン:
     - iOS: [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) の対応バージョンをご確認ください。
     - Android: [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) の対応バージョンをご確認ください。
 
-## テクニカルサポート窓口対応バージョン
+### テクニカルサポート窓口対応バージョン
 
 テクニカルサポート窓口では、1年半以内にリリースされたSDKに対してのみサポート対応させていただきます。
 定期的なバージョンのアップデートにご協力ください。  
 ※なお、mobile backend にて大規模な改修が行われた際は、1年半以内のSDKであっても対応出来ない場合がございます。  
 その際は[informationブログ](https://mbaas.nifcloud.com/info/)にてお知らせいたします。予めご了承ください。  
 
-- v3.0.10 ～ (※as of June,2022)
+- v3.0.10 ～ (※ 2022年6月時点)
 
 [開発ガイドライン](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)をご覧ください。
 
 
-## セットアップ
+## 初期設定
 
 * 詳細については[ドキュメント](https://mbaas.nifcloud.com/doc/current/push/basic_usage_javascript.html#%E3%83%97%E3%83%83%E3%82%B7%E3%83%A5%E9%80%9A%E7%9F%A5%E3%81%AE%E5%8F%97%E4%BF%A1(Monaca))を併せてご確認ください.
 * Android端末での利用には、ご自身のFirebase設定ファイルgoogle-services.jsonをダウンロードして、Cordovaプロジェクトのルートディレクトリに置く必要があります。設定ファイルのダウンロードについては[こちらのFirebaseサポートページ](https://support.google.com/firebase/answer/7015592)にて詳細をご覧ください。
@@ -36,7 +36,7 @@
 ```
 
 
-## 使い方
+## レファレンス
 
 ### window.NCMB.monaca.setDeviceToken(applicationKey,clientKey, successCallback, errorCallback)
 
@@ -62,7 +62,7 @@
 ### window.NCMB.monaca.setReceiptStatus(flag, callback);
 
 プッシュ通知の開封状況をサーバーに登録します。  
-これはプッシュ通知の開封状況についての統計グラフに利用されます。
+登録した開封状況のデータにより管理画面にて統計グラフが表示されます。  
 
 - (Boolean) flag
     - true : Send receipt to server
