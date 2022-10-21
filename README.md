@@ -61,7 +61,7 @@
 
 ### window.NCMB.monaca.setReceiptStatus(flag, callback);
 
-プッシュ通知の開封状況をサーバーに登録します。  
+プッシュ通知の開封状況をサーバーに登録する許可しますs。  
 登録した開封状況のデータにより管理画面にて統計グラフが表示されます。  
 
 - (Boolean) flag
