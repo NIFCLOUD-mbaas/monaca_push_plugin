@@ -158,10 +158,10 @@ LICENSEファイルをご覧ください。
 
 | Android | Android SDK | NIFCloudMB<br>(ncmb-push-monaca-plugin)        | Cordava         | Supported Environments   | Other Details                                                                                 
 | :-----: | :---------: | :--------------------------: | :-------------: | ------------------------ | -------------------------------------------------------------------------------------------------- |
-| 12.x    | 32          | v3.1.2 or higher                               | 11.0 or higher  | Android 10.1.2 or higher |                                                                                                    |
-| 12.0    | 31          | v3.1.2 or higher                               | 11.0 or higher  | Android 10.1.2 or higher |                                                                                                    |
-| 11.0    | 30          | v3.1.0 or higher                               | 10.0 or higher  | Android 10.1.1 or higher | In the Monaca IDE settings, go to "Android App Settings" and check "Enable AndroidX" to enable it  |
-| 10.0    | 29          | v3.1.0 or higher                               | 10.0 or higher  | Android 10.1.1 or higher | ^ same as above                                                                                    |
+| 12.x    | 32          | v3.1.2 ~                            | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
+| 12.0    | 31          | v3.1.2 ~                              | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
+| 11.0    | 30          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | In the Monaca IDE settings, go to "Android App Settings" and check "Enable AndroidX" to enable it  |
+| 10.0    | 29          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | ^ same as above                                                                                    |
 
 ※ Versions prior to v2.0.11 are old domain plugins, so please be sure to use v3.0.0 or higher.  
 ※ reference： [Monaca Supported Environments](https://ja.docs.monaca.io/environment) （This content does not guarantee the operation of NIFCloudMB）
