@@ -5,16 +5,14 @@
 ---
 ## 動作環境
 
-| Android | Android SDK | NIFCloudMB<br>(ncmb-push-monaca-plugin) | Cordava | ビルド環境            | その他                                                                                    
+| Android | Android APIレベル | NIFCloudMB<br>(ncmb-push-monaca-plugin) | Cordava | ビルド環境            | その他                                                                                    
 | :-----: | :---------: | :------------------------------------: | :-----: | ---------------- | -------------------------------------------------------------------------------------------------- |
 | 12.x    | 32          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
 | 12.0    | 31          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
-| 11.0    | 30          | v3.1.0以上            | 10.0以上  | Android 10.1.1以上 | Monaca IDEの設定で、「Androidアプリの設定」から「AndroidXを有効にする」にチェックを入れて、有効にしてください。 |
+| 11.0    | 30          | v3.1.0以上            | 10.0以上  | Android 10.1.1以上 | Monaca IDEの設定で、「Androidアプリの設定」から「AndroidXを有効にする」にチェックを入れる必要があります  |
 | 10.0    | 29          | v3.1.0以上                              | 10.0以上  | Android 10.1.1以上 | ^ 上に同じ                                                                                               |
 
-※ v2.0.11以前のバージョンは旧ドメインのpluginとなりますので、必ずv3.0.0以上のpluginをお使いください。  
-※ 参考： [Monaca 対応環境](https://ja.docs.monaca.io/environment) （NIFCloudの動作を保証するものではありません。）
-
+※ 併せて、[Monaca 対応環境](https://ja.docs.monaca.io/environment)をご確認ください。（NIFCloudMB (ncmb-push-monaca-plugin)の保証動作環境ではありません。）
 
 ### テクニカルサポート窓口対応バージョン
 
@@ -156,15 +154,15 @@ LICENSEファイルをご覧ください。
 
 ## Specifications
 
-| Android | Android SDK | NIFCloudMB<br>(ncmb-push-monaca-plugin)        | Cordava         | Supported Environments   | Other Details                                                                                 
+| Android | Android API level | NIFCloudMB<br>(ncmb-push-monaca-plugin)        | Cordava         | Supported Environments   | Note                                                                                 
 | :-----: | :---------: | :--------------------------: | :-------------: | ------------------------ | -------------------------------------------------------------------------------------------------- |
 | 12.x    | 32          | v3.1.2 ~                            | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
 | 12.0    | 31          | v3.1.2 ~                              | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
 | 11.0    | 30          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | In the Monaca IDE settings, go to "Android App Settings" and check "Enable AndroidX" to enable it  |
 | 10.0    | 29          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | ^ same as above                                                                                    |
 
-※ Versions prior to v2.0.11 are old domain plugins, so please be sure to use v3.0.0 or higher.  
-※ reference： [Monaca Supported Environments](https://ja.docs.monaca.io/environment) （This content does not guarantee the operation of NIFCloudMB）
+
+※ In addition, please check [Monaca Supported Environments](https://ja.docs.monaca.io/environment) （This content does not guarantee the operation of NIFCloudMB）
 
 ## Support desk coverage version
 
