@@ -6,7 +6,7 @@
 ## 動作環境
 - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
 - iOSの対応環境:
-  - [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios)をご確認ください。。
+  - [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios)をご確認ください。
 - Androidの対応環境：
 
 | Android | Android APIレベル | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova | ビルド環境設定            | その他                                                                                    
