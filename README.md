@@ -162,7 +162,7 @@ LICENSEファイルをご覧ください。
 | 10.0    | 29          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | ^ same as above                                                                                    |
 
 
-※  For reference, please check [Monaca Supported Environment](https://ja.docs.monaca.io/environment) （Notice that this is not equal guarantee operation environment for NIFCLOUDMB push plugin）
+※  For reference, please check [Monaca Supported Environment](https://ja.docs.monaca.io/environment) （Notice: This is not an equal guarantee operation environment for the NIFCLOUDMB push plugin. ）
 
 ## Support desk coverage version
 
