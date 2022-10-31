@@ -4,11 +4,19 @@
 
 ---
 ## 動作環境
+- PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
+- iOSの対応環境：
+  - [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios)をご確認ください。
+- Androidの対応環境：
 
- - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
- - iOS/Android OS 対応バージョン:
-    - iOS: [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) の対応バージョンをご確認ください。
-    - Android: [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) の対応バージョンをご確認ください。
+| Android | Android APIレベル | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova | ビルド環境設定            | その他                                                                                    
+| :-----: | :---------: | :------------------------------------: | :-----: | ---------------- | -------------------------------------------------------------------------------------------------- |
+| 12.x    | 32          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
+| 12.0    | 31          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
+| 11.0    | 30          | v3.1.0以上            | 10.0以上  | Android 10.1.1以上 | Monaca IDEの設定で、「Androidアプリの設定」から「AndroidXを有効にする」にチェックを入れる必要があります  |
+| 10.0    | 29          | v3.1.0以上                              | 10.0以上  | Android 10.1.1以上 | ^ 上に同じ                                                                                               |
+
+※ 併せて、[Monaca 対応環境](https://ja.docs.monaca.io/environment)をご確認ください。（NIFCLOUDMB (ncmb-push-monaca-plugin)の保証動作環境ではありません。）
 
 ### テクニカルサポート窓口対応バージョン
 
@@ -150,10 +158,20 @@ LICENSEファイルをご覧ください。
 
 ## Specifications
 
- - PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
- - iOS/Android Support OS version:
-    - iOS: see [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) Specifications.
-    - Android: see [Android SDK](https://github.com/NIFCLOUD-mbaas/ncmb_android) Specifications.
+- PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0
+- iOS Support OS version:
+  - See [iOS SDK](https://github.com/NIFCLOUD-mbaas/ncmb_ios) specifications for details.
+- Android Support OS version:
+
+| Android | Android API level | NIFCLOUDMB<br>(ncmb-push-monaca-plugin)        | Cordova         | Build Environment Settings   | Note                                                                                 
+| :-----: | :---------: | :--------------------------: | :-------------: | ------------------------ | -------------------------------------------------------------------------------------------------- |
+| 12.x    | 32          | v3.1.2 ~                            | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
+| 12.0    | 31          | v3.1.2 ~                              | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
+| 11.0    | 30          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | Be sure to check the "Enable AndroidX" box in  "Android App Settings" on Monaca IDE settings.   |
+| 10.0    | 29          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | ^ same as above                                                                                    |
+
+
+※  For reference, please check [Monaca Supported Environment](https://ja.docs.monaca.io/environment) （Notice: This is not an equal guarantee operation environment for the NIFCLOUDMB push plugin. ）
 
 ## Support desk coverage version
 
