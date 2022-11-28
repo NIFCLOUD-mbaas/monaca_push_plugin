@@ -25,7 +25,7 @@
 ※なお、mobile backend にて大規模な改修が行われた際は、1年半以内のSDKであっても対応出来ない場合がございます。  
 その際は[informationブログ](https://mbaas.nifcloud.com/info/)にてお知らせいたします。予めご了承ください。  
 
-- v3.0.10 ～ (※ 2022年6月時点)
+- v3.1.0 ～ (※2022年12月時点)
 
 [開発ガイドライン](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)をご覧ください。
 
@@ -177,7 +177,7 @@ LICENSEファイルをご覧ください。
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.0.10 ～ (※as of June,2022)
+- v3.1.0 ～ (※as of December,2022)
 
 
 ## Setup
