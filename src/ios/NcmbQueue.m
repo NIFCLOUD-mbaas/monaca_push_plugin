@@ -1,6 +1,6 @@
 //
 //  NcmbQueue.m
-//  Copyright 2017-2018 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+//  Copyright 2017-2023 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 //
 
