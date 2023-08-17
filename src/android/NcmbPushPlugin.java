@@ -37,6 +37,7 @@ import org.apache.cordova.CordovaWebView; //追加
 import java.lang.reflect.Method; //追加
 
 import android.os.Build; //追加
+import android.util.Log;
 
 /**
  * Ncmb push notification plugin.
@@ -50,7 +51,7 @@ public class NcmbPushPlugin extends CordovaPlugin
 
     protected static final String POST_NOTIFICATIONS = "POST_NOTIFICATIONS";//追加
     protected static final int POST_NOTIFICATIONS_PERMISSION_REQUEST_ID = 1;//追加
-
+    protected static final String TAG = "NCMB";
     /**
      * Push received callback context.
      */
@@ -407,6 +408,12 @@ public class NcmbPushPlugin extends CordovaPlugin
         }
     }
 
+
+    /**
+     * Grant push permission (for Android).
+     *
+     * @param callbackContext
+     */
     private void grantPermission(final CallbackContext callbackContext) {
         CordovaPlugin plugin = this;
         cordova.getThreadPool().execute(new Runnable() {
@@ -423,7 +430,7 @@ public class NcmbPushPlugin extends CordovaPlugin
                     }
 
                 } catch (Exception e) {
-                    //handleExceptionWithContext(e, callbackContext);
+                    handleExceptionWithContext(e, callbackContext);
                 }
             }
         });
@@ -452,7 +459,7 @@ public class NcmbPushPlugin extends CordovaPlugin
             Boolean bool = (Boolean) method.invoke(cordova, qualifiedPermission);
             hasRuntimePermission = bool.booleanValue();
         } catch (NoSuchMethodException e) {
-            //Log.w(TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
+            Log.w(TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
         }
         return hasRuntimePermission;
     }
@@ -479,10 +486,10 @@ public class NcmbPushPlugin extends CordovaPlugin
      */
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
         String sRequestId = String.valueOf(requestCode);
-        //Log.v(TAG, "Received result for permissions request id=" + sRequestId);
+        Log.v(TAG, "Received result for permissions request id=" + sRequestId);
         try {
             if(postNotificationPermissionRequestCallbackContext == null){
-                //Log.e(TAG, "No callback context found for permissions request id=" + sRequestId);
+                Log.e(TAG, "No callback context found for permissions request id=" + sRequestId);
                 return;
             }
 
@@ -500,11 +507,25 @@ public class NcmbPushPlugin extends CordovaPlugin
 
         }catch(Exception e ) {
             if(postNotificationPermissionRequestCallbackContext != null){
-                //handleExceptionWithContext(e, postNotificationPermissionRequestCallbackContext);
+                handleExceptionWithContext(e, postNotificationPermissionRequestCallbackContext);
             }else{
-                //handleExceptionWithoutContext(e);
+                handleExceptionWithoutContext(e);
             }
         }
+    }
+
+    /*
+     * Helper methods
+     */
+    protected static void handleExceptionWithContext(Exception e, CallbackContext context) {
+        String msg = e.toString();
+        Log.e(TAG, msg);
+        context.error(msg);
+    }
+
+    protected static void handleExceptionWithoutContext(Exception e){
+        String msg = e.toString();
+        Log.e(TAG, msg);
     }
 
     //Android13 push request
