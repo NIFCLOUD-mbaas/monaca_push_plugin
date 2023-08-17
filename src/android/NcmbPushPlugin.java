@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+
 import com.nifcloud.mbaas.core.DoneCallback;
 import com.nifcloud.mbaas.core.TokenCallback;
 import com.nifcloud.mbaas.core.FindCallback;
@@ -25,6 +28,16 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat; //追加
+import org.apache.cordova.CordovaWebView; //追加
+import java.lang.reflect.Method; //追加
+
+import android.os.Build; //追加
+
 /**
  * Ncmb push notification plugin.
  */
@@ -35,10 +48,14 @@ public class NcmbPushPlugin extends CordovaPlugin
     private static final String CLIENT_KEY = "client_key";
     private static final String RECEIPT_STATUS = "receipt_status";
 
+    protected static final String POST_NOTIFICATIONS = "POST_NOTIFICATIONS";//追加
+    protected static final int POST_NOTIFICATIONS_PERMISSION_REQUEST_ID = 1;//追加
+
     /**
      * Push received callback context.
      */
     private CallbackContext mPushReceivedCallbackContext;
+    private static CallbackContext postNotificationPermissionRequestCallbackContext;//追加
 
     /**
      * Ncmb push notification data queue to send into webview.
@@ -58,6 +75,8 @@ public class NcmbPushPlugin extends CordovaPlugin
         if (!appKey.equals("") && !clientKey.equals("")) {
             NCMB.initialize(cordova.getActivity(), appKey, clientKey);
         }
+
+        //askNotificationPermission();
     }
 
     /**
@@ -218,7 +237,10 @@ public class NcmbPushPlugin extends CordovaPlugin
                     }
                 }
             });
-        } else {
+        } else if (action.equals("grantPermission")) { //追加
+                this.grantPermission(callbackContext);
+        }
+        else {
             return false;
         }
 
@@ -311,7 +333,7 @@ public class NcmbPushPlugin extends CordovaPlugin
                             try{
                                 installation.setObjectId(results.get(0).getObjectId());
                             }catch(Exception e1){}
-                            
+
                             installation.saveInBackground(new DoneCallback() {
                                 @Override
                                 public void done(NCMBException saveErr) {
@@ -328,7 +350,7 @@ public class NcmbPushPlugin extends CordovaPlugin
                 }
             }
         });
-        
+
     }
 
     /**
@@ -384,4 +406,134 @@ public class NcmbPushPlugin extends CordovaPlugin
             return false;
         }
     }
+
+    private void grantPermission(final CallbackContext callbackContext) {
+        CordovaPlugin plugin = this;
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    if(Build.VERSION.SDK_INT >= 33){ // Android 13+
+                        boolean hasRuntimePermission = hasRuntimePermission(POST_NOTIFICATIONS);
+                        if(!hasRuntimePermission){
+                            String[] permissions = new String[]{qualifyPermission(POST_NOTIFICATIONS)};
+                            postNotificationPermissionRequestCallbackContext = callbackContext;
+                            requestPermissions(plugin, POST_NOTIFICATIONS_PERMISSION_REQUEST_ID, permissions);
+                            sendEmptyPluginResultAndKeepCallback(callbackContext);
+                        }
+                    }
+
+                } catch (Exception e) {
+                    //handleExceptionWithContext(e, callbackContext);
+                }
+            }
+        });
+    }
+
+    protected void sendEmptyPluginResultAndKeepCallback(CallbackContext callbackContext){
+        PluginResult pluginresult = new PluginResult(PluginResult.Status.NO_RESULT);
+        pluginresult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginresult);
+    }
+
+    protected String qualifyPermission(String permission){
+        if(permission.startsWith("android.permission.")){
+            return permission;
+        }else{
+            return "android.permission."+permission;
+        }
+    }
+
+    protected boolean hasRuntimePermission(String permission) throws Exception{
+        boolean hasRuntimePermission = true;
+        String qualifiedPermission = qualifyPermission(permission);
+        Method method = null;
+        try {
+            method = cordova.getClass().getMethod("hasPermission", qualifiedPermission.getClass());
+            Boolean bool = (Boolean) method.invoke(cordova, qualifiedPermission);
+            hasRuntimePermission = bool.booleanValue();
+        } catch (NoSuchMethodException e) {
+            //Log.w(TAG, "Cordova v" + CordovaWebView.CORDOVA_VERSION + " does not support runtime permissions so defaulting to GRANTED for " + permission);
+        }
+        return hasRuntimePermission;
+    }
+
+    protected void requestPermissions(CordovaPlugin plugin, int requestCode, String [] permissions) throws Exception{
+        try {
+            java.lang.reflect.Method method = cordova.getClass().getMethod("requestPermissions", org.apache.cordova.CordovaPlugin.class ,int.class, java.lang.String[].class);
+            method.invoke(cordova, plugin, requestCode, permissions);
+        } catch (NoSuchMethodException e) {
+            throw new Exception("requestPermissions() method not found in CordovaInterface implementation of Cordova v" + CordovaWebView.CORDOVA_VERSION);
+        }
+    }
+
+    /************
+     * Overrides
+     ***********/
+
+    /**
+     * then updates the list of status based on the grantResults before passing the result back via the context.
+     *
+     * @param requestCode - ID that was used when requesting permissions
+     * @param permissions - list of permissions that were requested
+     * @param grantResults - list of flags indicating if above permissions were granted or denied
+     */
+    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
+        String sRequestId = String.valueOf(requestCode);
+        //Log.v(TAG, "Received result for permissions request id=" + sRequestId);
+        try {
+            if(postNotificationPermissionRequestCallbackContext == null){
+                //Log.e(TAG, "No callback context found for permissions request id=" + sRequestId);
+                return;
+            }
+
+            boolean postNotificationPermissionGranted = false;
+            for (int i = 0, len = permissions.length; i < len; i++) {
+                String androidPermission = permissions[i];
+
+                if(androidPermission.equals(qualifyPermission(POST_NOTIFICATIONS))){
+                    postNotificationPermissionGranted = grantResults[i] == PackageManager.PERMISSION_GRANTED;
+                }
+            }
+
+            postNotificationPermissionRequestCallbackContext.success(postNotificationPermissionGranted ? 1 : 0);
+            postNotificationPermissionRequestCallbackContext = null;
+
+        }catch(Exception e ) {
+            if(postNotificationPermissionRequestCallbackContext != null){
+                //handleExceptionWithContext(e, postNotificationPermissionRequestCallbackContext);
+            }else{
+                //handleExceptionWithoutContext(e);
+            }
+        }
+    }
+
+    //Android13 push request
+    // private final ActivityResultLauncher<String> requestPermissionLauncher =
+    //     registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+    //         if (isGranted) {
+    //             // FCM SDK (and your app) can post notifications.
+    //         } else {
+    //             // TODO: Inform user that that your app will not show notifications.
+    //         }
+    //     });
+    //
+    // private void askNotificationPermission() {
+    //     // This is only necessary for API level >= 33 (TIRAMISU)
+    //     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    //         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+    //                 PackageManager.PERMISSION_GRANTED) {
+    //             // FCM SDK (and your app) can post notifications.
+    //         } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+    //             // TODO: display an educational UI explaining to the user the features that will be enabled
+    //             //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
+    //             //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
+    //             //       If the user selects "No thanks," allow the user to continue without notifications.
+    //         } else {
+    //             // Directly ask for the permission
+    //             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+    //         }
+    //     }
+    // }
+
+
 }

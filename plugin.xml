@@ -47,6 +47,7 @@
             <uses-permission android:name="android.permission.GET_ACCOUNTS" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
             <uses-permission android:name="android.permission.VIBRATE" />
+            <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
