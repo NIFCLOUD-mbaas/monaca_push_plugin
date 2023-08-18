@@ -419,7 +419,7 @@ public class NcmbPushPlugin extends CordovaPlugin
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    if(Build.VERSION.SDK_INT >= 33){ // Android 13+
+                    if(Build.VERSION.SDK_INT >= 33){ // check if Android 13+
                         boolean hasRuntimePermission = hasRuntimePermission(POST_NOTIFICATIONS);
                         if(!hasRuntimePermission){
                             String[] permissions = new String[]{qualifyPermission(POST_NOTIFICATIONS)};
@@ -473,12 +473,9 @@ public class NcmbPushPlugin extends CordovaPlugin
         }
     }
 
-    /************
-     * Overrides
-     ***********/
-
     /**
-     * then updates the list of status based on the grantResults before passing the result back via the context.
+     * [Overrides onRequestPermissionResult method]
+     * Updates the list of status based on the grantResults before passing the result back via the context.
      *
      * @param requestCode - ID that was used when requesting permissions
      * @param permissions - list of permissions that were requested
@@ -486,10 +483,10 @@ public class NcmbPushPlugin extends CordovaPlugin
      */
     public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
         String sRequestId = String.valueOf(requestCode);
-        Log.v(TAG, "Received result for permissions request id=" + sRequestId);
+        Log.v(TAG, "[NCMB] Received result for permissions request id = " + sRequestId);
         try {
             if(postNotificationPermissionRequestCallbackContext == null){
-                Log.e(TAG, "No callback context found for permissions request id=" + sRequestId);
+                Log.e(TAG, "[NCMB] No callback context found for permissions request id = " + sRequestId);
                 return;
             }
 
@@ -515,7 +512,7 @@ public class NcmbPushPlugin extends CordovaPlugin
     }
 
     /*
-     * Helper methods
+     * Helper methods to handle exception
      */
     protected static void handleExceptionWithContext(Exception e, CallbackContext context) {
         String msg = e.toString();
@@ -527,34 +524,5 @@ public class NcmbPushPlugin extends CordovaPlugin
         String msg = e.toString();
         Log.e(TAG, msg);
     }
-
-    //Android13 push request
-    // private final ActivityResultLauncher<String> requestPermissionLauncher =
-    //     registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-    //         if (isGranted) {
-    //             // FCM SDK (and your app) can post notifications.
-    //         } else {
-    //             // TODO: Inform user that that your app will not show notifications.
-    //         }
-    //     });
-    //
-    // private void askNotificationPermission() {
-    //     // This is only necessary for API level >= 33 (TIRAMISU)
-    //     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-    //         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-    //                 PackageManager.PERMISSION_GRANTED) {
-    //             // FCM SDK (and your app) can post notifications.
-    //         } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-    //             // TODO: display an educational UI explaining to the user the features that will be enabled
-    //             //       by them granting the POST_NOTIFICATION permission. This UI should provide the user
-    //             //       "OK" and "No thanks" buttons. If the user selects "OK," directly request the permission.
-    //             //       If the user selects "No thanks," allow the user to continue without notifications.
-    //         } else {
-    //             // Directly ask for the permission
-    //             requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-    //         }
-    //     }
-    // }
-
 
 }
