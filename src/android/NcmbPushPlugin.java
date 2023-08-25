@@ -32,11 +32,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.app.ActivityCompat; //追加
-import org.apache.cordova.CordovaWebView; //追加
-import java.lang.reflect.Method; //追加
+import androidx.core.app.ActivityCompat; 
+import org.apache.cordova.CordovaWebView; 
+import java.lang.reflect.Method; 
 
-import android.os.Build; //追加
+import android.os.Build; 
 import android.util.Log;
 
 /**
@@ -49,14 +49,14 @@ public class NcmbPushPlugin extends CordovaPlugin
     private static final String CLIENT_KEY = "client_key";
     private static final String RECEIPT_STATUS = "receipt_status";
 
-    protected static final String POST_NOTIFICATIONS = "POST_NOTIFICATIONS";//追加
-    protected static final int POST_NOTIFICATIONS_PERMISSION_REQUEST_ID = 1;//追加
+    protected static final String POST_NOTIFICATIONS = "POST_NOTIFICATIONS";
+    protected static final int POST_NOTIFICATIONS_PERMISSION_REQUEST_ID = 1;
     protected static final String TAG = "NCMB";
     /**
      * Push received callback context.
      */
     private CallbackContext mPushReceivedCallbackContext;
-    private static CallbackContext postNotificationPermissionRequestCallbackContext;//追加
+    private static CallbackContext postNotificationPermissionRequestCallbackContext;
 
     /**
      * Ncmb push notification data queue to send into webview.
@@ -76,8 +76,6 @@ public class NcmbPushPlugin extends CordovaPlugin
         if (!appKey.equals("") && !clientKey.equals("")) {
             NCMB.initialize(cordova.getActivity(), appKey, clientKey);
         }
-
-        //askNotificationPermission();
     }
 
     /**
@@ -238,7 +236,7 @@ public class NcmbPushPlugin extends CordovaPlugin
                     }
                 }
             });
-        } else if (action.equals("grantPermission")) { //追加
+        } else if (action.equals("grantPermission")) { 
                 this.grantPermission(callbackContext);
         }
         else {
@@ -419,7 +417,7 @@ public class NcmbPushPlugin extends CordovaPlugin
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 try {
-                    if(Build.VERSION.SDK_INT >= 33){ // check if Android 13+
+                    if(Build.VERSION.SDK_INT >= 33){ 
                         boolean hasRuntimePermission = hasRuntimePermission(POST_NOTIFICATIONS);
                         if(!hasRuntimePermission){
                             String[] permissions = new String[]{qualifyPermission(POST_NOTIFICATIONS)};
