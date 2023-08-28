@@ -91,6 +91,10 @@
 
 - (function)callback(deviceToken)
 
+### window.NCMB.monaca.grantPermission(function(hasPermission))
+
+プッシュ通知の許可を付与します。
+
 
 
 ## 使用例
@@ -121,6 +125,11 @@
                 // Get installation ID.
                 NCMB.monaca.getInstallationId(function(installationId){
                     // something
+                });
+
+                // Grant notification permission
+                window.NCMB.monaca.grantPermission(function(hasPermission){
+                    console.log("Notifications permission was " + (hasPermission ? "granted" : "denied"));
                 });
 
                 // Get receipt status
@@ -240,7 +249,9 @@ Get the Installation deviceToken for device.
 
 - (function)callback(deviceToken)
 
+### window.NCMB.monaca.grantPermission(function(hasPermission))
 
+Grant the permission for push notification.
 
 ## Sample
 
@@ -270,6 +281,11 @@ Get the Installation deviceToken for device.
                 // Get installation ID.
                 NCMB.monaca.getInstallationId(function(installationId){
                     // something
+                });
+
+                // Grant notification permission
+                window.NCMB.monaca.grantPermission(function(hasPermission){
+                    console.log("Notifications permission was " + (hasPermission ? "granted" : "denied"));
                 });
 
                 // Get receipt status
