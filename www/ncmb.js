@@ -131,6 +131,16 @@ var NCMB = (function() {
     };
 
     /**
+     * Grant push permission (for Android).
+     *
+     * @param {Function} callback
+     */
+    NCMB.prototype.grantPermission = function(callback) {
+        argscheck.checkArgs('f', 'NCMB.monaca.grantPermission', arguments);
+        exec(callback, null, pluginName, 'grantPermission', []);
+    };
+
+    /**
      * Set receipt status.
      *
      * @param {boolean} status
@@ -174,4 +184,3 @@ channel.onCordovaReady.subscribe(function() {
  * Export NCMB.
  */
 module.exports = ncmb;
-

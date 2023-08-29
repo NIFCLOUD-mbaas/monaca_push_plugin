@@ -9,14 +9,16 @@
   - iOS 13.x ~ iOS 16.x
 - Androidの対応環境：
 
-| Android | Android APIレベル | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova | ビルド環境設定            | その他                                                                                    
-| :-----: | :---------: | :------------------------------------: | :-----: | ---------------- | -------------------------------------------------------------------------------------------------- |
-| 12.x    | 32          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
-| 12.0    | 31          | v3.1.2以上                               | 11.0以上  | Android 10.1.2以上 |                                                                                                    |
-| 11.0    | 30          | v3.1.0以上            | 10.0以上  | Android 10.1.1以上 | Monaca IDEの設定で、「Androidアプリの設定」から「AndroidXを有効にする」にチェックを入れる必要があります  |
-| 10.0    | 29          | v3.1.0以上                              | 10.0以上  | Android 10.1.1以上 | ^ 上に同じ                                                                                               |
+| Android | Android APIレベル | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova  | ビルド環境設定        | その他                                                                      |
+|:-------:|:--------------:|:---------------------------------------:|:--------:|------------------|---------------------------------------------------------------------------|
+|  13.x   |       33       |               v3.2.0以上                | 12.0以上 | Android 12.0.0以上 | ※1                                                                          |
+|  12.x   |       32       |               v3.1.2以上                | 11.0以上 | Android 10.1.2以上 |                                                                           |
+|  12.0   |       31       |               v3.1.2以上                | 11.0以上 | Android 10.1.2以上 |                                                                           |
+|  11.0   |       30       |               v3.1.0以上                | 10.0以上 | Android 10.1.1以上 | Monaca IDEの設定で、「Androidアプリの設定」から「AndroidXを有効にする」にチェックを入れる必要があります |
+|  10.0   |       29       |               v3.1.0以上                | 10.0以上 | Android 10.1.1以上 | ^ 上に同じ                                                                  |
 
 ※ 併せて、[Monaca 対応環境](https://ja.docs.monaca.io/environment)をご確認ください。（NIFCLOUDMB (ncmb-push-monaca-plugin)の保証動作環境ではありません。）
+※1 Android 13向けのプッシュ通知がCordova12を利用して行えることを確認しているものであり、Cordova12の提供する全ての機能との互換性を保証するものではありません。
 
 ### テクニカルサポート窓口対応バージョン
 
@@ -25,7 +27,7 @@
 ※なお、mobile backend にて大規模な改修が行われた際は、1年半以内のSDKであっても対応出来ない場合がございます。  
 その際は[informationブログ](https://mbaas.nifcloud.com/info/)にてお知らせいたします。予めご了承ください。  
 
-- v3.1.0 ～ (※2022年12月時点)
+- v3.1.2 ～ (※2023年8月時点)
 
 [開発ガイドライン](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)をご覧ください。
 
@@ -91,11 +93,15 @@
 
 - (function)callback(deviceToken)
 
+### window.NCMB.monaca.grantPermission(function(hasPermission))
+
+プッシュ通知の許可を付与します。
+
 
 
 ## 使用例
 
-```
+```html
     <!DOCTYPE HTML>
     <html>
     <head>
@@ -121,6 +127,11 @@
                 // Get installation ID.
                 NCMB.monaca.getInstallationId(function(installationId){
                     // something
+                });
+
+                // Grant notification permission
+                window.NCMB.monaca.grantPermission(function(hasPermission){
+                    console.log("Notifications permission was " + (hasPermission ? "granted" : "denied"));
                 });
 
                 // Get receipt status
@@ -163,21 +174,23 @@ LICENSEファイルをご覧ください。
   - iOS 13.x ~ iOS 16.x
 - Android Support OS version:
 
-| Android | Android API level | NIFCLOUDMB<br>(ncmb-push-monaca-plugin)        | Cordova         | Build Environment Settings   | Note                                                                                 
-| :-----: | :---------: | :--------------------------: | :-------------: | ------------------------ | -------------------------------------------------------------------------------------------------- |
-| 12.x    | 32          | v3.1.2 ~                            | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
-| 12.0    | 31          | v3.1.2 ~                              | 11.0 ~  | Android 10.1.2 ~ |                                                                                                    |
-| 11.0    | 30          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | Be sure to check the "Enable AndroidX" box in  "Android App Settings" on Monaca IDE settings.   |
-| 10.0    | 29          | v3.1.0 ~                              | 10.0 ~  | Android 10.1.1 ~ | ^ same as above                                                                                    |
+| Android | Android API level | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova | Build Environment Settings | Note                                                                                          |
+|:-------:|:-----------------:|:---------------------------------------:|:-------:|----------------------------|-----------------------------------------------------------------------------------------------|
+|  13.x   |        33         |                v3.2.0 ~                 | 12.0 ~  | Android 12.0.0 ~           | ※1                                                                                           |
+|  12.x   |        32         |                v3.1.2 ~                 | 11.0 ~  | Android 10.1.2 ~           |                                                                                               |
+|  12.0   |        31         |                v3.1.2 ~                 | 11.0 ~  | Android 10.1.2 ~           |                                                                                               |
+|  11.0   |        30         |                v3.1.0 ~                 | 10.0 ~  | Android 10.1.1 ~           | Be sure to check the "Enable AndroidX" box in  "Android App Settings" on Monaca IDE settings. |
+|  10.0   |        29         |                v3.1.0 ~                 | 10.0 ~  | Android 10.1.1 ~           | ^ same as above                                                                               |
 
 
 ※  For reference, please check [Monaca Supported Environment](https://ja.docs.monaca.io/environment) （Notice: This is not an equal guarantee operation environment for the NIFCLOUDMB push plugin. ）
+※1 We only confirm that push notifications can be sent for Android 13 with Cordova 12. This is not guarantee compatibility with all features provided by Cordova 12.
 
 ## Support desk coverage version
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.1.0 ～ (※as of December,2022)
+- v3.1.2 ～ (※as of August,2023)
 
 
 ## Setup
@@ -240,11 +253,13 @@ Get the Installation deviceToken for device.
 
 - (function)callback(deviceToken)
 
+### window.NCMB.monaca.grantPermission(function(hasPermission))
 
+Grant the permission for push notification.
 
 ## Sample
 
-```
+```html
     <!DOCTYPE HTML>
     <html>
     <head>
@@ -270,6 +285,11 @@ Get the Installation deviceToken for device.
                 // Get installation ID.
                 NCMB.monaca.getInstallationId(function(installationId){
                     // something
+                });
+
+                // Grant notification permission
+                window.NCMB.monaca.grantPermission(function(hasPermission){
+                    console.log("Notifications permission was " + (hasPermission ? "granted" : "denied"));
                 });
 
                 // Get receipt status

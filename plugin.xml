@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   NIFCloud Mobile Backend Push Notification Plugin
-  Copyright 2017-2022 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+  Copyright 2017-2023 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 
   GooglePlayServices library
   Copyright (c) 2013 The Chromium Authors. All rights reserved.
@@ -13,7 +13,7 @@
 
     <name>NIFCLOUDMB</name>
     <description>NIFCLOUD Mobile Backend Push Notification Plugin</description>
-    <license>Copyright 2017-2022 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
+    <license>Copyright 2017-2023 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.</license>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -47,6 +47,7 @@
             <uses-permission android:name="android.permission.GET_ACCOUNTS" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
             <uses-permission android:name="android.permission.VIBRATE" />
+            <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <service
