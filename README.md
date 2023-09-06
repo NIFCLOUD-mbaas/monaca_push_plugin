@@ -4,7 +4,7 @@
 
 ---
 ## 動作環境
-- PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0, Cordova 12
+- PhoneGap/Cordova 9.0 ~ Cordova 12.0
 - iOSの対応環境：
   - iOS 13.x ~ iOS 16.x
 - Androidの対応環境：
@@ -169,7 +169,7 @@ LICENSEファイルをご覧ください。
 
 ## Specifications
 
-- PhoneGap/Cordova 9.0, Cordova 10.0, Cordova 11.0, Cordova 12.0
+- PhoneGap/Cordova 9.0 ~ Cordova 12.0
 - iOS Support OS version:
   - iOS 13.x ~ iOS 16.x
 - Android Support OS version:
