@@ -27,7 +27,7 @@
 ※なお、mobile backend にて大規模な改修が行われた際は、1年半以内のSDKであっても対応出来ない場合がございます。  
 その際は[informationブログ](https://mbaas.nifcloud.com/info/)にてお知らせいたします。予めご了承ください。  
 
-- v3.1.2 ～ (※2023年9月時点)
+- v3.1.2 ～ (※2023年10月時点)
 
 [開発ガイドライン](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)をご覧ください。
 
@@ -171,7 +171,7 @@ LICENSEファイルをご覧ください。
 
 - PhoneGap/Cordova 9.0 ~ Cordova 12.0
 - iOS Support OS version:
-  - iOS 13.x ~ iOS 16.x
+  - iOS 13.x ~ iOS 17.x
 - Android Support OS version:
 
 | Android | Android API level | NIFCLOUDMB<br>(ncmb-push-monaca-plugin) | Cordova | Build Environment Settings | Note                                                                                          |
@@ -190,7 +190,7 @@ LICENSEファイルをご覧ください。
 
 Please read [Developer guidelines](https://mbaas.nifcloud.com/doc/current/common/dev_guide.html#SDK%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6).
 
-- v3.1.2 ～ (※as of September,2023)
+- v3.1.2 ～ (※as of October,2023)
 
 
 ## Setup
