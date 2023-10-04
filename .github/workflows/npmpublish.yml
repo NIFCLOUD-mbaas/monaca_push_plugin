@@ -1,8 +1,9 @@
 name: Publish package monaca_push_plugin
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - add_npm_flow
 
 jobs:
   build:
@@ -15,6 +16,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - run: npm ci
       - run: npm test
-      - run: npm publish
+      - run: npm pack --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
